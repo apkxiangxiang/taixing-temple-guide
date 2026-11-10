@@ -6,6 +6,12 @@
 <meta name="theme-color" content="#1a120c">
 <title>跟志永哥逛泰興宮</title>
 <link rel="icon" href="ar/assets/icon-192.png">
+<script>
+  // 從 LINE 點開時改用外部瀏覽器（LINE 內建瀏覽器不能開相機）
+  if (/\bLine\//i.test(navigator.userAgent) && !/openExternalBrowser=1/.test(location.search)) {
+    location.replace(location.pathname + "?openExternalBrowser=1" + location.hash);
+  }
+</script>
 <style>
   :root { --bg: #1a120c; --fg: #fbf3e4; --muted: #d8c8ad; --gold: #f1b94a; --card: rgba(255,255,255,.06); --line: rgba(241,185,74,.4); color-scheme: dark; }
   * { box-sizing: border-box; margin: 0; }

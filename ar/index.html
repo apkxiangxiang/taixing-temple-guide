@@ -7,6 +7,12 @@
 <title>跟志永哥逛泰興宮</title>
 <link rel="icon" href="assets/icon-192.png">
 <link rel="stylesheet" href="css/style.css">
+<script>
+  // LINE 內建瀏覽器不能開相機：自動改用手機的外部瀏覽器開（LINE 支援 openExternalBrowser=1）
+  if (/\bLine\//i.test(navigator.userAgent) && !/openExternalBrowser=1/.test(location.search)) {
+    location.replace(location.pathname + (location.search ? location.search + "&" : "?") + "openExternalBrowser=1" + location.hash);
+  }
+</script>
 <script type="importmap">
 {
   "imports": {

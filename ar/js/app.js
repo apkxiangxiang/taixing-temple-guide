@@ -746,15 +746,55 @@ function frame() {
 // ---------------------------------------------------------------------
 // 啟動
 // ---------------------------------------------------------------------
+// 在 LINE、Facebook、Instagram 等 App 裡面打開的網頁，常常不能開相機
+const IN_APP = /\bLine\/|FBAN|FBAV|Instagram|MicroMessenger|; wv\)/i.test(navigator.userAgent);
+let stage = "";
+
 function fail(err) {
-  console.error(err);
+  console.error(stage, err);
   const name = err?.name || "";
-  let text = err?.message || String(err);
-  if (name === "NotAllowedError") text = "沒有相機權限。請在瀏覽器網址列旁的設定裡允許相機，再重新整理。";
-  else if (name === "NotFoundError") text = "找不到相機。";
-  else if (!window.isSecureContext) text = "相機只能在 https 網址下使用（電腦上用 localhost 可以）。";
-  $("error").textContent = "啟動失敗：" + text;
+  let text;
+  if (!window.isSecureContext) text = "相機只能在 https 網址下使用。";
+  else if (!navigator.mediaDevices?.getUserMedia) text = "這個瀏覽器不能開相機。";
+  else if (name === "NotAllowedError" || name === "SecurityError")
+    text = IN_APP ? "這個 App 裡的瀏覽器不讓網頁開相機。" : "相機權限被拒絕了。請點網址列左邊的圖示 → 權限 → 允許相機，再重新整理。";
+  else if (name === "NotReadableError" || name === "AbortError") text = "相機被其他 App 佔用了（例如相機、視訊通話）。請先關掉它們再試。";
+  else if (name === "NotFoundError" || name === "OverconstrainedError") text = "找不到可以用的相機。";
+  else text = (err?.message || String(err ?? "未知錯誤"));
+  if (IN_APP || !navigator.mediaDevices?.getUserMedia) text += " 請改用 Chrome 開啟這個網址。";
+  const el = $("error");
+  el.innerHTML = "";
+  const p = document.createElement("p");
+  p.textContent = `啟動失敗（${stage}）：${text}`;
+  const detail = document.createElement("p");
+  detail.className = "fine";
+  detail.textContent = `錯誤代碼：${name || "無"}｜${navigator.userAgent.match(/\(([^)]+)\)/)?.[1] || ""}`;
+  const retry = document.createElement("button");
+  retry.className = "primary";
+  retry.textContent = "重新整理再試一次";
+  retry.onclick = () => location.reload();
+  el.append(p, detail, retry);
+  if (IN_APP && /Android/i.test(navigator.userAgent)) {
+    const a = document.createElement("a");
+    a.className = "primary";
+    a.style.cssText = "display:inline-block;margin-left:8px;text-decoration:none";
+    a.textContent = "用 Chrome 開啟";
+    a.href = `intent://${location.host}${location.pathname}#Intent;scheme=https;package=com.android.chrome;end`;
+    el.append(a);
+  }
   show("error", true);
+}
+
+// 先自己開一次相機，拿到真正的錯誤原因（MindAR 失敗時不會告訴我們為什麼）
+async function checkCamera() {
+  if (!navigator.mediaDevices?.getUserMedia) throw Object.assign(new Error("no getUserMedia"), { name: "NotSupportedError" });
+  let s;
+  try { s = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false }); }
+  catch (e) {
+    if (e.name !== "OverconstrainedError") throw e;
+    s = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+  }
+  s.getTracks().forEach((t) => t.stop());
 }
 
 async function start() {
@@ -763,11 +803,18 @@ async function start() {
   speaker.unlock();
   const msg = (t) => { $("loadMsg").textContent = t; show("loadMsg", true); };
   try {
+    stage = "開啟相機";
+    msg("開啟相機…（請按「允許」）");
+    await checkCamera();
+    stage = "載入素材";
     msg("載入素材…");
     const images = await Promise.all(points.map((p) => loadImage(p.image)));
+    stage = `載入${NAME}`;
     await guide.preload((f) => msg(`載入${NAME}… ${Math.round(f * 100)}%`));
+    stage = "載入辨識資料";
     const src = await getMindSrc(images, msg);
-    msg("開啟相機…");
+    stage = "啟動辨識";
+    msg("啟動辨識…");
     mindar = new MindARThree({
       container: $("ar"), imageTargetSrc: src, maxTrack: 1,
       uiLoading: "no", uiScanning: "no", uiError: "no",
@@ -776,7 +823,8 @@ async function start() {
     renderer = mindar.renderer;
     camera = mindar.camera;
     points.forEach((p, i) => spots.push(buildSpot(p, i, images[i])));
-    await mindar.start();
+    // MindAR 失敗時不帶錯誤原因，這裡補上
+    await mindar.start().catch((e) => { throw e || new Error("相機或辨識引擎啟動失敗"); });
     show("start", false);
     show("hud", true);
     setScanUI();
