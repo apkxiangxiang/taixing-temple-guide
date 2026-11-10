@@ -436,34 +436,16 @@
     if ("speechSynthesis" in window) speechSynthesis.cancel();
     if (!gv.hidden && !gv.loop) showIdle();
   }
-  // 還沒有志永哥聲音檔的句子：暫時用手機內建語音念（之後會被複製聲音取代）
-  let ttsVoice = null;
-  if ("speechSynthesis" in window) {
-    const pick = () => {
-      const vs = speechSynthesis.getVoices();
-      ttsVoice = vs.find((v) => v.lang === "zh-TW") || vs.find((v) => /^zh|cmn/i.test(v.lang)) || null;
-    };
-    pick();
-    speechSynthesis.onvoiceschanged = pick;
-  }
-  function tts(text) {
-    if (!soundOn || !text || !("speechSynthesis" in window)) return;
-    const u = new SpeechSynthesisUtterance(text.replace(/[「」『』]/g, ""));
-    u.lang = "zh-TW";
-    if (ttsVoice) u.voice = ttsVoice;
-    speechSynthesis.speak(u);
-  }
-  function voiceFor(m, text) {
+  function voiceFor(m) {
     stopVoice();
     if (m?.video) {
       showVideo(m.video, { loop: false, withSound: true });
       gv.onended = showIdle;
     } else if (m?.audio && soundOn) {
       voice.src = m.audio;
-      voice.play().catch(() => tts(text));
-    } else {
-      tts(text);
+      voice.play().catch(() => {});
     }
+    // 沒有志永哥聲音檔的句子：不出聲（手機內建語音不像他，使用者明確不要）
   }
   // 聲音開關（放在志永哥的對話區右上角，設定會記住）
   const soundBtn = document.createElement("button");
