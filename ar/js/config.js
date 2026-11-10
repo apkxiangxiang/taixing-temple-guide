@@ -57,7 +57,8 @@ export const CONFIG = {
   // ---------- 語音 ----------
   // 每一句可以加 audio: "assets/voice/xxx.mp3"（志永哥真人錄音）。
   // 沒有音檔的句子，暫時用手機內建朗讀（ttsFallback），或只顯示字幕。
-  voice: { ttsFallback: true, lang: "zh-TW", rate: 1.0, msPerChar: 230 },
+  // ttsFallback：手機內建語音（不像志永哥，使用者不要）→ 關閉；沒有聲音檔的句子只顯示字幕
+  voice: { ttsFallback: false, lang: "zh-TW", rate: 1.0, msPerChar: 230 },
 
   // ---------- 導覽點 ----------
   // image：辨識用的主照片（正對、平行拍、沒有人擋）

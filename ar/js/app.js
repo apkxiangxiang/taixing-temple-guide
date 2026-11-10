@@ -540,8 +540,16 @@ function subtitle(text, gloss = "") {
 // 講一句：line = { say, gloss?, video?, audio?, clip? }
 //   video：AI 虛擬人對嘴影片（有就用它，畫面和聲音都在影片裡）
 //   沒有 video 時：顯示 clip 動作 + 播 audio（或暫用朗讀）
+// 志永哥的聲音（AI 複製聲音，tools/voice_gen.py 產生）：manifest 是 key → 原句，這裡反查成 原句 → 檔案
+// 台詞改過就對不上、不會播到舊的錄音
+const VOICE_DIR = "../shared/voice/ar/";
+const voiceByText = {};
+fetch(VOICE_DIR + "manifest.json").then((r) => (r.ok ? r.json() : {}))
+  .then((m) => Object.entries(m).forEach(([k, raw]) => (voiceByText[raw] = VOICE_DIR + k + ".mp3"))).catch(() => {});
+
 let speakSeq = 0;
 async function speak(line, fallbackClip = "default") {
+  if (!line.audio && voiceByText[line.say]) line = { ...line, audio: voiceByText[line.say] };
   const my = ++speakSeq;
   subtitle(line.say, line.gloss);
   let video = null;
