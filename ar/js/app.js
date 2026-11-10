@@ -757,7 +757,11 @@ function fail(err) {
   if (!window.isSecureContext) text = "相機只能在 https 網址下使用。";
   else if (!navigator.mediaDevices?.getUserMedia) text = "這個瀏覽器不能開相機。";
   else if (name === "NotAllowedError" || name === "SecurityError")
-    text = IN_APP ? "這個 App 裡的瀏覽器不讓網頁開相機。" : "相機權限被拒絕了。請點網址列左邊的圖示 → 權限 → 允許相機，再重新整理。";
+    text = IN_APP ? "這個 App 裡的瀏覽器不讓網頁開相機。"
+      : "相機權限沒有開。① 如果出現「This site can't ask for your permission」：是畫面上有其他 App 的懸浮視窗"
+        + "（聊天泡泡、螢幕錄影、護眼／夜間濾鏡、懸浮球），先把它們關掉。"
+        + "② 或直接手動開：點網址列左邊的圖示 → 權限（或「網站設定」）→ 相機 → 允許，再按下面的重新整理。"
+        + "③ 還是不行：手機「設定 → 應用程式 → Chrome → 權限 → 相機」要是允許。";
   else if (name === "NotReadableError" || name === "AbortError") text = "相機被其他 App 佔用了（例如相機、視訊通話）。請先關掉它們再試。";
   else if (name === "NotFoundError" || name === "OverconstrainedError") text = "找不到可以用的相機。";
   else text = (err?.message || String(err ?? "未知錯誤"));

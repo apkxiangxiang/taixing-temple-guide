@@ -168,6 +168,7 @@
     show("overview");
     $("campSheet").hidden = true;
     typeText($("ovLine"), fill(OV.say), $("ovGuideImg"));
+    voiceFor(media(null, "overview", OV.say), fill(OV.say));
     if (ovCentered) return;
     const center = () => {
       const a = $("ovArea"), w = $("ovWrap").offsetWidth;
@@ -196,7 +197,9 @@
     const got = ready.filter((s) => done.has(s.id)).length;
     $("mapStamps").textContent = got === ready.length ? "🏅 完成卡" : `印章 ${got} / ${ready.length} ›`;
     $("mapStamps").classList.toggle("complete", got === ready.length);
-    typeText($("mapLine"), fill(got === ready.length && T.map.doneSay ? T.map.doneSay : T.map.say), $("mapGuideImg"));
+    const mapDone = got === ready.length && T.map.doneSay;
+    typeText($("mapLine"), fill(mapDone ? T.map.doneSay : T.map.say), $("mapGuideImg"));
+    voiceFor(mapDone ? media(null, "map-done", T.map.doneSay) : media(null, "map", T.map.say), fill(mapDone ? T.map.doneSay : T.map.say));
     $("mapWrap").querySelectorAll(".pin, .route").forEach((p) => p.remove());
     // 建議路線：依站號連起來，兩端都走過的段落變紅色
     const pins = T.stops.filter((s) => s.pin).sort((a, b) => a.pin.n - b.pin.n);
@@ -371,7 +374,7 @@
       $("lookupText").textContent = fill(l.say);
       $("lookup").hidden = false;
     }
-    say(fill(l.say), l);
+    say(fill(l.say), media(l, `${stop().id}-${step}`, l.say));
   }
 
   function next() {
@@ -390,7 +393,7 @@
     $("bubble").classList.remove("pop"); void $("bubble").offsetWidth; $("bubble").classList.add("pop");
     typing = true;
     typeText($("line"), text, $("guideImg"), () => { typing = null; });
-    voiceFor(media);
+    voiceFor(media, text);
   }
 
   // ---------- 虛擬志永哥（AI 講話影片／錄音） ----------
@@ -398,6 +401,15 @@
   // 只有 audio：照片 + 聲音
   // T.guide.idle：沒講話時循環的待機影片；沒有就顯示動作照片
   const gv = $("guideVideo");
+  // 志永哥的聲音（AI 複製聲音，tools/voice_gen.py 產生）：manifest 記錄每個檔案念的是哪一句，
+  // 台詞改過、跟 manifest 對不上就不播，避免念錯
+  const VOICE_DIR = "../shared/voice/remote/";
+  let VOICE = {};
+  fetch(VOICE_DIR + "manifest.json").then((r) => (r.ok ? r.json() : {})).then((j) => (VOICE = j)).catch(() => {});
+  function media(l, key, raw, vKey = "video", aKey = "audio") {
+    if (l && (l[vKey] || l[aKey])) return { video: l[vKey], audio: l[aKey] };
+    return raw && VOICE[key] === raw ? { audio: VOICE_DIR + key + ".mp3" } : null;
+  }
   const voice = new Audio();
   const SOUND_KEY = "templego-sound";
   let soundOn = (() => { try { return localStorage.getItem(SOUND_KEY) !== "off"; } catch { return true; } })();
@@ -421,17 +433,36 @@
   function stopVoice() {
     voice.pause();
     voice.removeAttribute("src");
+    if ("speechSynthesis" in window) speechSynthesis.cancel();
     if (!gv.hidden && !gv.loop) showIdle();
   }
-  function voiceFor(m) {
+  // 還沒有志永哥聲音檔的句子：暫時用手機內建語音念（之後會被複製聲音取代）
+  let ttsVoice = null;
+  if ("speechSynthesis" in window) {
+    const pick = () => {
+      const vs = speechSynthesis.getVoices();
+      ttsVoice = vs.find((v) => v.lang === "zh-TW") || vs.find((v) => /^zh|cmn/i.test(v.lang)) || null;
+    };
+    pick();
+    speechSynthesis.onvoiceschanged = pick;
+  }
+  function tts(text) {
+    if (!soundOn || !text || !("speechSynthesis" in window)) return;
+    const u = new SpeechSynthesisUtterance(text.replace(/[「」『』]/g, ""));
+    u.lang = "zh-TW";
+    if (ttsVoice) u.voice = ttsVoice;
+    speechSynthesis.speak(u);
+  }
+  function voiceFor(m, text) {
     stopVoice();
-    if (!m) return;
-    if (m.video) {
+    if (m?.video) {
       showVideo(m.video, { loop: false, withSound: true });
       gv.onended = showIdle;
-    } else if (m.audio && soundOn) {
+    } else if (m?.audio && soundOn) {
       voice.src = m.audio;
-      voice.play().catch(() => {});
+      voice.play().catch(() => tts(text));
+    } else {
+      tts(text);
     }
   }
   // 聲音開關（放在志永哥的對話區右上角，設定會記住）
@@ -444,6 +475,7 @@
     try { localStorage.setItem(SOUND_KEY, soundOn ? "on" : "off"); } catch {}
     renderSound();
     voice.muted = !soundOn;
+    if (!soundOn && "speechSynthesis" in window) speechSynthesis.cancel();
     if (!gv.loop) gv.muted = !soundOn;
   };
   renderSound();
@@ -677,12 +709,12 @@
         burst(el);
         mode = "talk";
         cheer();
-        say(fill(l.right), { video: l.rightVideo, audio: l.rightAudio });
+        say(fill(l.right), media(l, `${stop().id}-${step}-right`, l.right, "rightVideo", "rightAudio"));
         openSheet(h);
         setTimeout(clearHotspots, 600);
       } else {
         el.classList.remove("wrong"); void el.offsetWidth; el.classList.add("wrong");
-        say(fill(l.wrong), { video: l.wrongVideo, audio: l.wrongAudio });
+        say(fill(l.wrong), media(l, `${stop().id}-${step}-wrong`, l.wrong, "wrongVideo", "wrongAudio"));
         $("bubble").classList.add("waiting");
       }
     } else if (mode === "explore") {
@@ -715,11 +747,11 @@
           burst(b);
           mode = "talk";
           cheer();
-          say(fill(l.right), { video: l.rightVideo, audio: l.rightAudio });
+          say(fill(l.right), media(l, `${stop().id}-${step}-right`, l.right, "rightVideo", "rightAudio"));
           setTimeout(() => (box.hidden = true), 700);
         } else {
           b.classList.remove("wrong"); void b.offsetWidth; b.classList.add("wrong");
-          say(fill(l.wrong), { video: l.wrongVideo, audio: l.wrongAudio });
+          say(fill(l.wrong), media(l, `${stop().id}-${step}-wrong`, l.wrong, "wrongVideo", "wrongAudio"));
         }
       };
       box.appendChild(b);
@@ -750,7 +782,8 @@
     $("sheet").hidden = true;
     if (mode === "talk" && line()?.type === "explore") {
       cheer();
-      say(fill(line().done || "厲害喔，細節都被你找到了！"), { video: line().doneVideo, audio: line().doneAudio });
+      const dl = line(), dt = dl.done || "厲害喔，細節都被你找到了！";
+      say(fill(dt), media(dl, `${stop().id}-${step}-done`, dt, "doneVideo", "doneAudio"));
       $("counter").hidden = true;
       clearHotspots();
     }
