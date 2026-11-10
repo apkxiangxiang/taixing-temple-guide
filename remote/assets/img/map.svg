@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 520">
+  <!-- 泰興宮鳥瞰示意圖：依文獻「背山面溪、前殿國王廟、後殿弼教堂、中軸大街」繪製，非實測比例 -->
+  <defs>
+    <pattern id="tile" width="6" height="6" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" fill="#c4553b"/>
+      <path d="M0 5.5H6" stroke="#a3402b" stroke-width="1.2"/>
+    </pattern>
+    <pattern id="tile2" width="6" height="6" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" fill="#b8644a"/>
+      <path d="M0 5.5H6" stroke="#96482f" stroke-width="1.2"/>
+    </pattern>
+    <pattern id="pave" width="18" height="18" patternUnits="userSpaceOnUse">
+      <rect width="18" height="18" fill="#ece3cf"/>
+      <path d="M0 0H18M0 0V18" stroke="#d9ccb1" stroke-width="1"/>
+    </pattern>
+    <filter id="sh" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="2.5" flood-color="#3b2416" flood-opacity=".35"/>
+    </filter>
+  </defs>
+
+  <!-- 地面 -->
+  <rect width="360" height="520" fill="#d9e4c6"/>
+
+  <!-- 莊背山（龍背林） -->
+  <path d="M0 0H360V78Q320 52 282 70Q240 34 196 64Q150 30 108 62Q66 38 30 66Q14 60 0 70Z" fill="#7f9f68"/>
+  <path d="M0 0H360V46Q316 26 270 44Q226 14 180 40Q132 12 88 38Q44 18 0 40Z" fill="#62845a"/>
+  <g fill="#557a4c">
+    <circle cx="40" cy="58" r="9"/><circle cx="76" cy="52" r="7"/><circle cx="300" cy="60" r="9"/>
+    <circle cx="330" cy="66" r="7"/><circle cx="250" cy="56" r="6"/>
+  </g>
+  <text x="180" y="26" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="13" font-weight="600" fill="#eef3e4" letter-spacing="3">莊背山・龍背林</text>
+
+  <!-- 兩側樹木 -->
+  <g fill="#86a872">
+    <circle cx="28" cy="160" r="14"/><circle cx="22" cy="200" r="11"/><circle cx="34" cy="300" r="13"/>
+    <circle cx="332" cy="170" r="13"/><circle cx="338" cy="214" r="10"/><circle cx="326" cy="300" r="14"/>
+  </g>
+
+  <!-- 廟埕 -->
+  <rect x="28" y="360" width="304" height="112" rx="6" fill="url(#pave)" stroke="#cdbd9d"/>
+
+  <!-- 中軸大街 -->
+  <rect x="150" y="472" width="60" height="48" fill="#cfc1a4"/>
+  <path d="M180 478V514" stroke="#f4ecdc" stroke-width="2" stroke-dasharray="6 6"/>
+  <text x="222" y="500" font-family="Noto Sans TC, sans-serif" font-size="10" fill="#6d5c4f">中軸大街</text>
+  <text x="222" y="513" font-family="Noto Sans TC, sans-serif" font-size="10" fill="#6d5c4f">往大甲溪 ↓</text>
+
+  <!-- 廟宇基地 -->
+  <rect x="56" y="76" width="248" height="288" rx="4" fill="#efe6d3" stroke="#b9a888" stroke-width="1.5"/>
+
+  <!-- 後殿 弼教堂 -->
+  <g filter="url(#sh)">
+    <rect x="94" y="110" width="172" height="64" rx="2" fill="url(#tile)" stroke="#7a2a1c" stroke-width="1.5"/>
+    <path d="M90 142H270" stroke="#e3b54a" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M90 142q-8-2-10-12M270 142q8-2 10-12" fill="none" stroke="#e3b54a" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- 化胎（後殿後方半月形隆起的土地）＋ 宮內最裡面、中軸線上的龍神大榕樹 -->
+  <path d="M112 110Q180 82 248 110Z" fill="#a9c08e" stroke="#7f9f68" stroke-width="1.2"/>
+  <text x="124" y="107" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="9" font-weight="600" fill="#4d6b3c">化胎</text>
+  <g filter="url(#sh)">
+    <rect x="177" y="90" width="6" height="14" fill="#7a4e2c"/>
+    <circle cx="168" cy="90" r="10" fill="#5f8f3a"/><circle cx="192" cy="90" r="10" fill="#5f8f3a"/>
+    <circle cx="180" cy="84" r="12" fill="#4f7a2c"/>
+    <path d="M172 102L180 96L188 102Z" fill="#b5452f"/><rect x="174" y="102" width="12" height="6" fill="#e8d6b0" stroke="#7a2a1c" stroke-width=".8"/>
+  </g>
+
+  <!-- 天井 -->
+  <rect x="112" y="176" width="136" height="28" fill="url(#pave)"/>
+
+  <!-- 前殿 國王廟：左右殿 + 正殿 -->
+  <g filter="url(#sh)">
+    <rect x="66" y="214" width="60" height="76" rx="2" fill="url(#tile2)" stroke="#7a2a1c" stroke-width="1.2"/>
+    <rect x="234" y="214" width="60" height="76" rx="2" fill="url(#tile2)" stroke="#7a2a1c" stroke-width="1.2"/>
+    <path d="M70 252H122M238 252H290" stroke="#d9a646" stroke-width="2.5" stroke-linecap="round"/>
+    <rect x="118" y="204" width="124" height="94" rx="2" fill="url(#tile)" stroke="#7a2a1c" stroke-width="1.5"/>
+    <path d="M114 251H246" stroke="#e3b54a" stroke-width="4" stroke-linecap="round"/>
+    <path d="M114 251q-9-2-12-13M246 251q9-2 12-13" fill="none" stroke="#e3b54a" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="180" cy="251" r="5" fill="#e3b54a" stroke="#7a2a1c"/>
+  </g>
+
+  <!-- 三川門・拜殿 -->
+  <g filter="url(#sh)">
+    <rect x="98" y="302" width="164" height="38" rx="2" fill="url(#tile)" stroke="#7a2a1c" stroke-width="1.5"/>
+    <path d="M94 321H266" stroke="#e3b54a" stroke-width="3" stroke-linecap="round"/>
+    <path d="M94 321q-7-1-9-10M266 321q7-1 9-10" fill="none" stroke="#e3b54a" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- 前方階梯 -->
+  <g fill="#d6cbb4" stroke="#b9a888">
+    <rect x="112" y="342" width="136" height="6"/>
+    <rect x="106" y="348" width="148" height="6"/>
+    <rect x="100" y="354" width="160" height="6"/>
+  </g>
+
+  <!-- 龍邊 / 虎邊（面向廟宇時，龍邊在右手邊） -->
+  <path d="M262 352Q280 356 288 366" fill="none" stroke="#7a1712" stroke-width="1.2" stroke-dasharray="3 3"/>
+  <text x="292" y="346" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="11" font-weight="600" fill="#7a1712">龍邊</text>
+  <text x="68" y="346" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="11" font-weight="600" fill="#7a1712">虎邊</text>
+
+  <text x="10" y="512" font-family="Noto Sans TC, sans-serif" font-size="9" fill="#6d5c4f" opacity=".8">示意圖・非實際比例</text>
+</svg>

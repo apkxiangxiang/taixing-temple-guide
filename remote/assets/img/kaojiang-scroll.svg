@@ -1,0 +1,203 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 500" width="1300" height="500">
+  <!-- 犒將長卷：廟內供桌 → 龍邊階梯馬草水 → 四方將寮（插畫示意，依徐登志〈犒將〉繪製） -->
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f6ecd6"/><stop offset="1" stop-color="#ecdcbc"/>
+    </linearGradient>
+    <pattern id="tile" width="6" height="6" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" fill="#c4553b"/><path d="M0 5.5H6" stroke="#a3402b" stroke-width="1.2"/>
+    </pattern>
+    <pattern id="pave" width="22" height="22" patternUnits="userSpaceOnUse">
+      <rect width="22" height="22" fill="#e6dcc6"/><path d="M0 0H22M0 0V22" stroke="#d2c4a6"/>
+    </pattern>
+    <g id="cup">
+      <path d="M-6 0H6L4 9H-4Z" fill="#fbf5e9" stroke="#7a5a3a" stroke-width="1.2"/>
+      <ellipse cx="0" cy="1" rx="5" ry="1.6" fill="#d9b26a"/>
+    </g>
+    <g id="bowl">
+      <path d="M-8 0H8Q8 9 0 9Q-8 9 -8 0Z" fill="#fbf5e9" stroke="#7a5a3a" stroke-width="1.2"/>
+      <ellipse cx="0" cy="-1" rx="6.5" ry="3" fill="#b8644a"/>
+    </g>
+    <g id="liao">
+      <rect x="-28" y="0" width="56" height="36" fill="#e6d6b5" stroke="#6b4a2c" stroke-width="1.5"/>
+      <rect x="-10" y="12" width="20" height="24" fill="#5a2a1a"/>
+      <path d="M-36 2L0 -20L36 2Z" fill="url(#tile)" stroke="#7a2a1c" stroke-width="1.5"/>
+      <path d="M34 36V-44" stroke="#5a3a22" stroke-width="3"/>
+    </g>
+  </defs>
+  <style>
+    .smoke{animation:smoke 3.6s ease-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+    .smoke.s2{animation-delay:1.2s}.smoke.s3{animation-delay:2.4s}
+    @keyframes smoke{0%{opacity:0;transform:translateY(8px) scale(.7)}30%{opacity:.75}100%{opacity:0;transform:translateY(-26px) scale(1.25)}}
+    .dash{animation:dash 3s linear infinite}
+    @keyframes dash{to{stroke-dashoffset:-28}}
+    .flag{animation:flag 1.6s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:0 50%}
+    .flag.r{transform-origin:100% 50%}
+    @keyframes flag{0%{transform:skewY(-6deg) scaleX(.94)}100%{transform:skewY(5deg) scaleX(1.04)}}
+    .sway{animation:sway 2.8s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:50% 100%}
+    @keyframes sway{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
+    .lantern{animation:lantern 3.2s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:50% 0}
+    .lantern.b{animation-delay:-1.6s}
+    @keyframes lantern{from{transform:rotate(-5deg)}to{transform:rotate(5deg)}}
+    .glow{animation:glow 2.6s ease-in-out infinite alternate}
+    @keyframes glow{from{opacity:.25}to{opacity:.7}}
+    .bird{animation:bird 28s linear infinite}
+    .bird.b2{animation-duration:34s;animation-delay:-12s}
+    @keyframes bird{from{transform:translate(-120px,0)}to{transform:translate(1450px,-70px)}}
+    .wing{animation:flap .45s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:50% 100%}
+    @keyframes flap{to{transform:scaleY(.35)}}
+    .drift{animation:drift 9s ease-in-out infinite alternate}
+    .drift.slow{animation-duration:14s}
+    @keyframes drift{from{transform:translateX(-14px)}to{transform:translateX(14px)}}
+    @media (prefers-reduced-motion: reduce){*{animation:none!important}}
+  </style>
+
+  <rect width="1300" height="500" fill="url(#paper)"/>
+
+  <!-- ========== 第一段：廟內供桌 ========== -->
+  <rect x="0" y="18" width="450" height="464" fill="#f1e0bd"/>
+  <rect x="15" y="18" width="25" height="464" fill="#a3241b"/>
+  <rect x="410" y="18" width="25" height="464" fill="#a3241b"/>
+  <path d="M15 40H40M410 40H435" stroke="#e3b54a" stroke-width="4"/>
+  <text x="225" y="62" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="22" font-weight="900" fill="#7a1712">廟內犒將</text>
+  <text x="225" y="90" text-anchor="middle" font-family="Noto Sans TC, sans-serif" font-size="14" fill="#6d4a2a">每月農曆初二、十六・下午三點到五點</text>
+
+  <!-- 供桌 -->
+  <rect x="60" y="290" width="340" height="16" fill="#7a4a2a"/>
+  <rect x="68" y="306" width="324" height="120" fill="#b8322a"/>
+  <path d="M68 318H392M68 414H392" stroke="#e3b54a" stroke-width="3"/>
+  <text x="230" y="378" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="30" font-weight="900" fill="#e3b54a" letter-spacing="10">犒將</text>
+
+  <!-- 三牲 -->
+  <ellipse cx="115" cy="288" rx="46" ry="7" fill="#fbf5e9" stroke="#7a5a3a"/>
+  <ellipse cx="98" cy="270" rx="20" ry="14" fill="#f0c27a" stroke="#a9762c" stroke-width="1.2"/>
+  <path d="M84 262q-8-12 2-18q6 2 4 10" fill="#f0c27a" stroke="#a9762c" stroke-width="1.2"/>
+  <rect x="120" y="258" width="26" height="26" rx="3" fill="#e8a089" stroke="#a65a44" stroke-width="1.2"/>
+  <path d="M120 266H146" stroke="#fbf0e6" stroke-width="3"/>
+  <path d="M86 284q30-10 58 0q-30 8-58 0z" fill="#a8b8b0" stroke="#5f7a70" stroke-width="1"/>
+  <path d="M144 284l8-5v10z" fill="#a8b8b0" stroke="#5f7a70" stroke-width="1"/>
+
+  <!-- 香爐 -->
+  <path d="M176 270H204L200 290H180Z" fill="#c9a24a" stroke="#7a5a1c" stroke-width="1.5"/>
+  <path d="M184 270V236M190 270V232M196 270V236" stroke="#8a2a1c" stroke-width="2"/>
+  <path class="smoke s2" d="M190 230q-6-10 0-18q6-8 0-16" fill="none" stroke="#9a8f80" stroke-width="1.5" opacity=".7"/>
+
+  <!-- 酒六碗 -->
+  <g>
+    <use href="#cup" x="225" y="278"/><use href="#cup" x="240" y="278"/><use href="#cup" x="255" y="278"/>
+    <use href="#cup" x="270" y="278"/><use href="#cup" x="285" y="278"/><use href="#cup" x="300" y="278"/>
+  </g>
+  <!-- 肉六碗 -->
+  <g>
+    <use href="#bowl" x="322" y="280"/><use href="#bowl" x="340" y="280"/><use href="#bowl" x="358" y="280"/>
+    <use href="#bowl" x="331" y="268"/><use href="#bowl" x="349" y="268"/><use href="#bowl" x="367" y="268"/>
+  </g>
+
+  <!-- 地面與筊杯 -->
+  <rect x="0" y="426" width="450" height="56" fill="url(#pave)"/>
+  <path d="M206 452q14-16 30 0q-15 6-30 0z" fill="#c8322a" stroke="#7a1712" stroke-width="1.5"/>
+  <path d="M244 446q14 16 30 0q-15-6-30 0z" fill="#c8322a" stroke="#7a1712" stroke-width="1.5"/>
+
+  <!-- ========== 第二段：龍邊階梯・馬草水 ========== -->
+  <text x="650" y="62" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="22" font-weight="900" fill="#7a1712">龍邊階梯・馬草水</text>
+  <!-- 廟立面 -->
+  <path d="M478 130L650 92L822 130Z" fill="url(#tile)" stroke="#7a2a1c" stroke-width="2"/>
+  <path d="M470 132H830" stroke="#e3b54a" stroke-width="5" stroke-linecap="round"/>
+  <path d="M470 132q-12-2-16-14M830 132q12-2 16-14" fill="none" stroke="#e3b54a" stroke-width="4" stroke-linecap="round"/>
+  <rect x="490" y="136" width="320" height="196" fill="#d9c7a3"/>
+  <rect x="510" y="136" width="18" height="196" fill="#a3241b"/>
+  <rect x="772" y="136" width="18" height="196" fill="#a3241b"/>
+  <rect x="598" y="176" width="104" height="156" fill="#8a1c14" stroke="#5a120c" stroke-width="2"/>
+  <path d="M650 176V332" stroke="#5a120c" stroke-width="2"/>
+  <g fill="#e3b54a">
+    <circle cx="620" cy="210" r="3"/><circle cx="636" cy="210" r="3"/><circle cx="664" cy="210" r="3"/><circle cx="680" cy="210" r="3"/>
+    <circle cx="620" cy="240" r="3"/><circle cx="636" cy="240" r="3"/><circle cx="664" cy="240" r="3"/><circle cx="680" cy="240" r="3"/>
+    <circle cx="620" cy="270" r="3"/><circle cx="636" cy="270" r="3"/><circle cx="664" cy="270" r="3"/><circle cx="680" cy="270" r="3"/>
+  </g>
+  <!-- 階梯 -->
+  <path d="M520 332H780L790 352H510Z" fill="#d6cbb4" stroke="#a89a7c"/>
+  <path d="M510 352H790L802 376H498Z" fill="#cdbfa3" stroke="#a89a7c"/>
+  <path d="M498 376H802L816 402H484Z" fill="#c4b595" stroke="#a89a7c"/>
+  <rect x="450" y="402" width="400" height="80" fill="url(#pave)"/>
+
+  <!-- 馬草桶 -->
+  <g>
+    <path d="M718 312L752 312L748 348H722Z" fill="#8a5a32" stroke="#5a3a1e" stroke-width="1.5"/>
+    <path d="M719 322H751M720 336H750" stroke="#5a3a1e" stroke-width="1.2"/>
+    <g stroke="#5f9a3a" stroke-width="3" stroke-linecap="round" class="sway">
+      <path d="M724 312l-4-16M730 312l-1-20M736 312l2-18M742 312l4-16M747 312l7-12"/>
+    </g>
+    <g stroke="#7fbf4f" stroke-width="2" stroke-linecap="round">
+      <path d="M727 312l-6-10M733 312v-12M739 312l5-11"/>
+    </g>
+  </g>
+  <!-- 水桶 -->
+  <g>
+    <path d="M788 344H822L818 382H792Z" fill="#8a5a32" stroke="#5a3a1e" stroke-width="1.5"/>
+    <path d="M789 356H821M790 370H820" stroke="#5a3a1e" stroke-width="1.2"/>
+    <ellipse cx="805" cy="344" rx="17" ry="5" fill="#7fb6d6" stroke="#4a7f9a"/>
+  </g>
+
+  <!-- 龍邊 / 虎邊 -->
+  <g font-family="Noto Serif TC, serif" font-size="18" font-weight="900" fill="#7a1712" text-anchor="middle">
+    <text x="790" y="450">龍邊 →</text>
+    <text x="510" y="450">← 虎邊</text>
+  </g>
+  <text x="650" y="472" text-anchor="middle" font-family="Noto Sans TC, sans-serif" font-size="12" fill="#6d5c4f">（面向廟門時）</text>
+
+  <!-- ========== 第三段：四方將寮 ========== -->
+  <rect x="860" y="18" width="440" height="464" fill="#dfe8cf"/>
+  <text x="1075" y="62" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="22" font-weight="900" fill="#7a1712">四方將寮</text>
+  <g stroke="#9a8f6a" stroke-width="2" stroke-dasharray="6 6" fill="none" class="dash">
+    <path d="M1075 250V190M1075 290V375M1050 270H950M1100 270H1170"/>
+  </g>
+  <!-- 中央：泰興宮 -->
+  <g>
+    <rect x="1050" y="258" width="50" height="30" fill="#d9c7a3" stroke="#6b4a2c" stroke-width="1.5"/>
+    <path d="M1042 260L1075 240L1108 260Z" fill="url(#tile)" stroke="#7a2a1c" stroke-width="1.5"/>
+    <text x="1075" y="306" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="12" font-weight="900" fill="#7a1712">泰興宮</text>
+  </g>
+  <!-- 北營（黑） -->
+  <use href="#liao" x="1075" y="150"/>
+  <path class="flag" d="M1109 106L1139 116L1109 126Z" fill="#222" stroke="#000"/>
+  <text x="1075" y="204" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="15" font-weight="900" fill="#3b2a1e">北營</text>
+  <!-- 南營（紅） -->
+  <use href="#liao" x="1075" y="378"/>
+  <path class="flag" d="M1109 334L1139 344L1109 354Z" fill="#c8322a" stroke="#7a1712"/>
+  <text x="1075" y="432" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="15" font-weight="900" fill="#3b2a1e">南營</text>
+  <!-- 西營（白） -->
+  <use href="#liao" x="920" y="256"/>
+  <path class="flag" d="M954 212L984 222L954 232Z" fill="#fbfbf6" stroke="#8a8a80" stroke-width="1.5"/>
+  <text x="920" y="310" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="15" font-weight="900" fill="#3b2a1e">西營</text>
+  <!-- 東營（綠） -->
+  <use href="#liao" x="1200" y="256"/>
+  <path class="flag" d="M1234 212L1264 222L1234 232Z" fill="#3f8f4f" stroke="#245a30"/>
+  <text x="1200" y="310" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="15" font-weight="900" fill="#3b2a1e">東營</text>
+
+  <text x="1290" y="476" text-anchor="end" font-family="Noto Sans TC, sans-serif" font-size="11" fill="#6d5c4f" opacity=".8">插畫示意</text>
+
+  <!-- ===== 動態細節 ===== -->
+  <!-- 廟內的燈籠 -->
+  <g class="lantern"><path d="M68 18V40" stroke="#5a3a22" stroke-width="2"/><ellipse cx="68" cy="56" rx="15" ry="18" fill="#e0443a" stroke="#7a1712"/><path d="M55 56H81" stroke="#f2c94c" stroke-width="2"/><rect x="64" y="73" width="8" height="8" fill="#e3b54a"/></g>
+  <g class="lantern b"><path d="M382 18V40" stroke="#5a3a22" stroke-width="2"/><ellipse cx="382" cy="56" rx="15" ry="18" fill="#e0443a" stroke="#7a1712"/><path d="M369 56H395" stroke="#f2c94c" stroke-width="2"/><rect x="378" y="73" width="8" height="8" fill="#e3b54a"/></g>
+  <!-- 燭光 -->
+  <g><rect x="160" y="262" width="6" height="22" fill="#e9d9b5"/><ellipse cx="163" cy="258" rx="3" ry="5" fill="#f6b23a" class="glow"/>
+     <rect x="212" y="262" width="6" height="22" fill="#e9d9b5"/><ellipse cx="215" cy="258" rx="3" ry="5" fill="#f6b23a" class="glow"/></g>
+  <path class="smoke s1" d="M184 232q-6-8 0-15q6-7 0-14" fill="none" stroke="#9a8f80" stroke-width="2" stroke-linecap="round" opacity="0"/><path class="smoke s2" d="M184 232q-6-8 0-15q6-7 0-14" fill="none" stroke="#9a8f80" stroke-width="2" stroke-linecap="round" opacity="0"/><path class="smoke s3" d="M196 232q-6-8 0-15q6-7 0-14" fill="none" stroke="#9a8f80" stroke-width="2" stroke-linecap="round" opacity="0"/><path class="smoke s3" d="M196 232q-6-8 0-15q6-7 0-14" fill="none" stroke="#9a8f80" stroke-width="2" stroke-linecap="round" opacity="0"/>
+  <!-- 水桶水面閃光 -->
+  <ellipse cx="800" cy="343" rx="6" ry="1.6" fill="#fff" class="glow"/>
+  <!-- 廟簷下的燈籠 -->
+  <g class="lantern"><path d="M560 136V150" stroke="#5a3a22" stroke-width="2"/><ellipse cx="560" cy="164" rx="12" ry="14" fill="#e0443a" stroke="#7a1712"/></g>
+  <g class="lantern b"><path d="M740 136V150" stroke="#5a3a22" stroke-width="2"/><ellipse cx="740" cy="164" rx="12" ry="14" fill="#e0443a" stroke="#7a1712"/></g>
+  <!-- 四方將寮旁的樹 -->
+  <g><circle cx="960" cy="140" r="16" fill="#8fb36a"/><circle cx="1190" cy="140" r="14" fill="#8fb36a"/><circle cx="960" cy="400" r="15" fill="#8fb36a"/><circle cx="1195" cy="410" r="16" fill="#8fb36a"/></g>
+  <!-- 兵馬巡營：小光點沿著四方繞 -->
+  <circle r="4" fill="#e3b54a"><animateMotion dur="10s" repeatCount="indefinite" path="M1075 175L1205 250L1075 365L925 250Z"/></circle>
+  <circle r="4" fill="#e3b54a" opacity=".7"><animateMotion dur="10s" begin="-5s" repeatCount="indefinite" path="M1075 175L1205 250L1075 365L925 250Z"/></circle>
+
+  <!-- 卷軸邊框 -->
+  <rect x="0" y="0" width="1300" height="14" fill="#7a1712"/>
+  <rect x="0" y="486" width="1300" height="14" fill="#7a1712"/>
+  <rect x="0" y="14" width="1300" height="4" fill="#e3b54a"/>
+  <rect x="0" y="482" width="1300" height="4" fill="#e3b54a"/>
+</svg>

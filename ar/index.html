@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1a120c">
+<title>跟志永哥逛泰興宮</title>
+<link rel="icon" href="assets/icon-192.png">
+<link rel="stylesheet" href="css/style.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/",
+    "mindar-image": "https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image.prod.js",
+    "mindar-image-three": "https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-three.prod.js"
+  }
+}
+</script>
+</head>
+<body>
+
+<!-- 相機與 3D 畫面 -->
+<div id="ar"></div>
+<!-- 接收點擊的透明層（在相機上、在介面下） -->
+<div id="tap"></div>
+
+<!-- 上方：進度 -->
+<header id="hud" hidden>
+  <div id="progress"><b id="progressNum">0</b>/<span id="progressTotal">6</span> 個故事點</div>
+  <button id="menuBtn" class="ghost" aria-label="選單">☰</button>
+</header>
+
+<!-- 掃描提示 -->
+<div id="scanHint" hidden>
+  <div class="scanFrame"><i></i><i></i><i></i><i></i></div>
+  <p id="scanText">拿起手機，對著廟裡的門神、木牌、龍神樹看看</p>
+</div>
+
+<!-- 發現目標 -->
+<div id="foundHint" hidden>
+  <p><b id="foundName"></b></p>
+  <p class="sub">點一下發光的地方，請{name}出來介紹</p>
+</div>
+
+<!-- 跟丟提示 -->
+<div id="lostHint" hidden>把鏡頭對回 <b id="lostName"></b>，{name}在那裡等你</div>
+
+<!-- 導覽人頭上的對話泡泡（跟著導覽人移動） -->
+<button id="askBubble" hidden>
+  <span id="askSay"></span>
+  <small id="askGloss"></small>
+  <em id="askHint"></em>
+</button>
+
+<!-- 字幕 -->
+<div id="subtitle" hidden>
+  <h3 id="subName"></h3>
+  <p id="subText"></p>
+  <div id="choices"></div>
+</div>
+
+<!-- 蓋章 -->
+<div id="stampToast" hidden>
+  <div class="stamp"><span id="stampText"></span></div>
+  <p id="stampMsg"></p>
+</div>
+
+<!-- 開始畫面 -->
+<section id="start">
+  <div class="startInner">
+    <p class="kicker">慶東泰興宮・AR 導覽</p>
+    <h1>跟志永哥<br>逛泰興宮</h1>
+    <p class="lead">用手機鏡頭在廟裡四處看看。找到有故事的地方，志永哥就會出現在旁邊，講給你聽。</p>
+    <button id="startBtn" class="primary">開始導覽</button>
+    <p class="fine">需要使用相機。畫面只在你的手機上處理，不錄影、不上傳。<br>建議用 Android Chrome，開聲音。</p>
+    <p id="loadMsg" class="fine" hidden></p>
+    <a class="fine" href="../remote/" style="color: var(--gold)">不在廟裡？改用遠端導覽</a>
+  </div>
+</section>
+
+<!-- 選單 -->
+<section id="menu" hidden>
+  <div class="menuInner">
+    <button id="menuClose" class="ghost close" aria-label="關閉">✕</button>
+    <h2>六個故事點</h2>
+    <ol id="pointList"></ol>
+    <h2>測試用</h2>
+    <p class="fine">在電腦或另一支手機打開目標照片，用這支手機對著螢幕掃，就能在家測試。</p>
+    <div id="targetLinks"></div>
+    <button id="resetBtn" class="ghost small">清除集章紀錄</button>
+    <h2>素材來源</h2>
+    <ul id="credits" class="fine"></ul>
+  </div>
+</section>
+
+<div id="error" hidden></div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

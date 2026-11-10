@@ -1,0 +1,160 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" width="1200" height="500">
+  <!-- 三山國王故事長卷：廣東三山 → 渡海來臺 → 大茅埔國王宮（插畫示意） -->
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f6ecd6"/>
+      <stop offset="1" stop-color="#ecdcbc"/>
+    </linearGradient>
+    <linearGradient id="mtn" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3f7a6c"/>
+      <stop offset="1" stop-color="#8fb39a"/>
+    </linearGradient>
+    <linearGradient id="mtn2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2f6458"/>
+      <stop offset="1" stop-color="#6f9a84"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9cc0bb"/>
+      <stop offset="1" stop-color="#5f8f8c"/>
+    </linearGradient>
+    <pattern id="thatch" width="6" height="8" patternUnits="userSpaceOnUse">
+      <rect width="6" height="8" fill="#c9a25a"/>
+      <path d="M1 0V8M4 0V8" stroke="#a9833f" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <style>
+    .smoke{animation:smoke 3.6s ease-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+    .smoke.s2{animation-delay:1.2s}.smoke.s3{animation-delay:2.4s}
+    @keyframes smoke{0%{opacity:0;transform:translateY(8px) scale(.7)}30%{opacity:.75}100%{opacity:0;transform:translateY(-26px) scale(1.25)}}
+    .dash{animation:dash 3s linear infinite}
+    @keyframes dash{to{stroke-dashoffset:-28}}
+    .flag{animation:flag 1.6s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:0 50%}
+    .flag.r{transform-origin:100% 50%}
+    @keyframes flag{0%{transform:skewY(-6deg) scaleX(.94)}100%{transform:skewY(5deg) scaleX(1.04)}}
+    .sway{animation:sway 2.8s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:50% 100%}
+    @keyframes sway{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
+    .lantern{animation:lantern 3.2s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:50% 0}
+    .lantern.b{animation-delay:-1.6s}
+    @keyframes lantern{from{transform:rotate(-5deg)}to{transform:rotate(5deg)}}
+    .glow{animation:glow 2.6s ease-in-out infinite alternate}
+    @keyframes glow{from{opacity:.25}to{opacity:.7}}
+    .bird{animation:bird 28s linear infinite}
+    .bird.b2{animation-duration:34s;animation-delay:-12s}
+    @keyframes bird{from{transform:translate(-120px,0)}to{transform:translate(1450px,-70px)}}
+    .wing{animation:flap .45s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:50% 100%}
+    @keyframes flap{to{transform:scaleY(.35)}}
+    .drift{animation:drift 9s ease-in-out infinite alternate}
+    .drift.slow{animation-duration:14s}
+    @keyframes drift{from{transform:translateX(-14px)}to{transform:translateX(14px)}}
+    @media (prefers-reduced-motion: reduce){*{animation:none!important}}
+  </style>
+
+  <!-- 紙底與卷軸邊框 -->
+  <rect width="1200" height="500" fill="url(#paper)"/>
+  <rect x="0" y="0" width="1200" height="14" fill="#7a1712"/>
+  <rect x="0" y="486" width="1200" height="14" fill="#7a1712"/>
+  <rect x="0" y="14" width="1200" height="4" fill="#e3b54a"/>
+  <rect x="0" y="482" width="1200" height="4" fill="#e3b54a"/>
+
+  <!-- ========== 第一段：廣東揭陽三山 ========== -->
+  <text x="245" y="60" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="22" font-weight="900" fill="#7a1712">廣東揭陽・霖田都</text>
+  <!-- 太陽 -->
+  <circle cx="420" cy="160" r="46" fill="#f6d77a" class="glow"/><circle cx="420" cy="160" r="30" fill="#f2c94c" opacity=".85"/>
+  <!-- 遠山 -->
+  <path d="M0 330Q60 250 120 290Q170 240 220 280Q300 220 360 270Q420 230 470 290L480 400H0Z" fill="#b9cdb6" opacity=".8"/>
+  <!-- 巾山 -->
+  <path d="M10 400Q60 300 110 175Q160 300 210 400Z" fill="url(#mtn)"/>
+  <path d="M110 175Q95 250 70 330M110 175Q125 240 150 320" fill="none" stroke="#e8f0e4" stroke-width="3" opacity=".7"/>
+  <!-- 明山 -->
+  <path d="M150 400Q200 270 250 125Q300 270 350 400Z" fill="url(#mtn2)"/>
+  <path d="M250 125Q232 220 205 320M250 125Q268 210 296 310" fill="none" stroke="#e8f0e4" stroke-width="3" opacity=".7"/>
+  <!-- 獨山 -->
+  <path d="M300 400Q345 300 390 195Q435 300 480 400Z" fill="url(#mtn)"/>
+  <path d="M390 195Q376 270 352 340M390 195Q404 260 428 330" fill="none" stroke="#e8f0e4" stroke-width="3" opacity=".7"/>
+  <!-- 雲帶 -->
+  <g fill="#fbf5e9" opacity=".9" class="drift">
+    <path d="M40 300q20-14 40 0t40 0t40 0t40 0v10h-160z"/>
+    <path d="M260 250q18-12 36 0t36 0t36 0v9h-108z"/>
+    <path d="M330 330q18-12 36 0t36 0t36 0t36 0v9h-144z"/>
+  </g>
+  <!-- 山名 -->
+  <g font-family="Noto Serif TC, serif" font-size="20" font-weight="900" fill="#fbf5e9" text-anchor="middle">
+    <text x="110" y="385">巾山</text>
+    <text x="250" y="385">明山</text>
+    <text x="390" y="385">獨山</text>
+  </g>
+  <rect x="0" y="400" width="480" height="82" fill="#c9b78f" opacity=".5"/>
+
+  <!-- ========== 第二段：渡海來臺 ========== -->
+  <rect x="470" y="300" width="350" height="182" fill="url(#sea)"/>
+  <g fill="none" stroke="#e6f0ee" stroke-width="2.5" stroke-linecap="round" opacity=".85" class="waves">
+    <path d="M490 340q15-10 30 0t30 0t30 0"/>
+    <path d="M700 330q15-10 30 0t30 0t30 0"/>
+    <path d="M520 420q15-10 30 0t30 0t30 0t30 0"/>
+    <path d="M690 440q15-10 30 0t30 0t30 0"/>
+    <path d="M560 465q15-10 30 0t30 0"/>
+  </g>
+  <!-- 船 -->
+  <g class="bob">
+    <path d="M585 372H715L698 400H602Z" fill="#7a4a2a" stroke="#4a2c18" stroke-width="2"/>
+    <path d="M650 372V250" stroke="#4a2c18" stroke-width="4"/>
+    <path d="M652 262Q700 300 698 362H652Z" fill="#e9d9b5" stroke="#8b6a3e" stroke-width="2"/>
+    <path d="M652 262Q700 300 698 362" fill="none" stroke="#8b6a3e" stroke-width="1" opacity=".5"/>
+    <path d="M648 268Q612 300 610 362H648Z" fill="#dcc89e" stroke="#8b6a3e" stroke-width="2"/>
+    <!-- 令旗 -->
+    <path class="flag r" d="M650 250L620 238L650 226Z" fill="#c8322a" stroke="#7a1712" stroke-width="1.5"/>
+  </g>
+  <text x="645" y="70" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="22" font-weight="900" fill="#7a1712">渡海來臺</text>
+  <path class="dash" d="M520 110Q645 70 770 110" fill="none" stroke="#7a1712" stroke-width="2" stroke-dasharray="6 6"/>
+  <path d="M770 110l-14-2 8 11z" fill="#7a1712"/>
+
+  <!-- ========== 第三段：大茅埔國王宮 ========== -->
+  <text x="1010" y="60" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="22" font-weight="900" fill="#7a1712">大茅埔・國王宮</text>
+  <!-- 莊背山 -->
+  <path d="M810 300Q880 190 960 240Q1040 160 1120 230Q1170 200 1200 220V400H810Z" fill="url(#mtn)" opacity=".85"/>
+  <!-- 茅草地 -->
+  <rect x="810" y="360" width="390" height="122" fill="#d8c48e"/>
+  <g stroke="#b9a466" stroke-width="2" stroke-linecap="round">
+    <path d="M830 450l6-18M846 452l4-20M900 460l5-16M1130 455l5-18M1150 458l3-16M1170 452l6-18"/>
+    <path d="M840 400l5-14M1150 398l4-14M1180 404l5-14"/>
+  </g>
+  <!-- 茅草頂小廟 -->
+  <g>
+    <rect x="955" y="318" width="110" height="62" fill="#d9c7a3" stroke="#6b4a2c" stroke-width="2"/>
+    <path d="M935 322L1010 258L1085 322Z" fill="url(#thatch)" stroke="#7a5a2c" stroke-width="2"/>
+    <rect x="993" y="336" width="34" height="44" fill="#7a1712"/>
+    <rect x="985" y="300" width="50" height="14" fill="#fbf5e9" stroke="#7a1712" stroke-width="1"/>
+    <text x="1010" y="311" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="10" font-weight="900" fill="#7a1712">國王宮</text>
+  </g>
+  <text x="1010" y="420" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="16" font-weight="600" fill="#6d4a2a">咸豐六年（1856）落成</text>
+
+  <!-- ===== 動態細節 ===== -->
+  <style>
+    .bob{animation:bob 3.4s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+    @keyframes bob{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(5px) rotate(1.5deg)}}
+    .waves{animation:waves 5s ease-in-out infinite alternate}
+    @keyframes waves{from{transform:translateX(-10px)}to{transform:translateX(12px)}}
+  </style>
+  <!-- 船邊的浪花、海鷗 -->
+  <g fill="none" stroke="#f4faf9" stroke-width="2.5" stroke-linecap="round" class="waves">
+    <path d="M590 404q10-7 20 0t20 0M672 404q10-7 20 0t20 0"/>
+  </g>
+  <g class="drift slow"><path d="M760 210q7-7 14 0q7-7 14 0" fill="none" stroke="#4a3a2c" stroke-width="2" stroke-linecap="round"/></g>
+  <!-- 國王宮前的香爐與香煙 -->
+  <path d="M1040 372H1062L1058 382H1044Z" fill="#c9a24a" stroke="#7a5a1c" stroke-width="1.2"/>
+  <path class="smoke s1" d="M1051 368q-6-8 0-15q6-7 0-14" fill="none" stroke="#9a8f80" stroke-width="2" stroke-linecap="round" opacity="0"/><path class="smoke s2" d="M1051 368q-6-8 0-15q6-7 0-14" fill="none" stroke="#9a8f80" stroke-width="2" stroke-linecap="round" opacity="0"/><path class="smoke s3" d="M1051 368q-6-8 0-15q6-7 0-14" fill="none" stroke="#9a8f80" stroke-width="2" stroke-linecap="round" opacity="0"/>
+  <!-- 茅草地上的竹子 -->
+  <g class="sway"><path d="M1170 400V300" stroke="#5f8f3a" stroke-width="4"/><path d="M1170 320l18-10M1170 340l-16-10M1170 360l18-8" stroke="#6fae3e" stroke-width="3" stroke-linecap="round"/></g>
+  <g class="sway" style="animation-delay:-1.2s"><path d="M835 400V310" stroke="#5f8f3a" stroke-width="4"/><path d="M835 330l-16-10M835 350l16-10M835 370l-16-8" stroke="#6fae3e" stroke-width="3" stroke-linecap="round"/></g>
+  
+  <!-- 飛鳥 -->
+  <g class="bird"><g transform="translate(0 70)">
+    <path class="wing" d="M0 0q8-8 16 0q8-8 16 0" fill="none" stroke="#4a3a2c" stroke-width="2.4" stroke-linecap="round"/>
+    <path class="wing" d="M26 14q6-6 12 0q6-6 12 0" fill="none" stroke="#4a3a2c" stroke-width="2" stroke-linecap="round"/>
+  </g></g>
+  <g class="bird b2"><g transform="translate(0 120)">
+    <path class="wing" d="M0 0q7-7 14 0q7-7 14 0" fill="none" stroke="#4a3a2c" stroke-width="2.2" stroke-linecap="round"/>
+  </g></g>
+
+  <text x="1190" y="476" text-anchor="end" font-family="Noto Sans TC, sans-serif" font-size="11" fill="#6d5c4f" opacity=".8">插畫示意</text>
+</svg>

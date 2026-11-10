@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#15120f">
+  <title>泰興宮導覽</title>
+  <meta name="description" content="跟著在地人，看見東勢大茅埔泰興宮的細節">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" href="assets/icons/favicon.png">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="泰興宮導覽">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;900&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main id="app">
+
+    <!-- 開場 -->
+    <section id="intro" class="screen active">
+      <div class="intro-bg"></div>
+      <div class="intro-content">
+        <p class="eyebrow">台中・東勢</p>
+        <h1 id="templeName"></h1>
+        <p id="templeSub" class="sub"></p>
+        <img class="intro-guide" id="introGuide" alt="在地導覽員">
+        <button id="startBtn" class="btn primary">開始導覽</button>
+        <ul class="etiquette">
+          <li>志永哥會開口講解，請打開聲音</li>
+          <li>請勿擋在神明正前方、殿內不用閃光燈</li>
+        </ul>
+        <button class="link-btn" id="creditsBtn">照片與資料來源</button>
+        <a class="link-btn" href="../ar/">人在泰興宮？改用現場 AR 導覽</a>
+      </div>
+      <div class="sheet credits-sheet" id="creditsSheet" hidden>
+        <h3>照片與資料來源</h3>
+        <div id="creditsList"></div>
+        <button class="btn" id="creditsClose">關閉</button>
+      </div>
+    </section>
+
+    <!-- 大茅埔總覽圖 -->
+    <section id="overview" class="screen">
+      <header class="topbar">
+        <button class="icon-btn" id="ovHomeBtn" aria-label="回首頁">‹</button>
+        <h2>大茅埔總覽圖</h2>
+      </header>
+      <div class="ov-area" id="ovArea">
+        <div class="ov-wrap" id="ovWrap">
+          <img id="ovImg" alt="大茅埔總覽示意圖">
+        </div>
+      </div>
+      <div class="map-guide">
+        <img class="guide" id="ovGuideImg" alt="">
+        <div class="bubble">
+          <span class="speaker" id="ovSpeaker"></span>
+          <p id="ovLine"></p>
+        </div>
+      </div>
+
+      <div class="sheet" id="campSheet" hidden>
+        <h3 id="campTitle"></h3>
+        <p id="campDesc"></p>
+        <button class="btn" id="campClose">知道了</button>
+      </div>
+    </section>
+
+    <!-- 鳥瞰地圖 -->
+    <section id="map" class="screen">
+      <header class="topbar">
+        <button class="icon-btn" id="mapHomeBtn" aria-label="回大茅埔總覽圖">‹</button>
+        <h2>泰興宮鳥瞰圖</h2>
+        <button class="stamp-chip" id="mapStamps" aria-label="查看集章卡"></button>
+      </header>
+      <div class="map-area">
+        <div class="map-wrap" id="mapWrap">
+          <img id="mapImg" alt="泰興宮鳥瞰示意圖">
+        </div>
+        <button class="qian-entry" id="qianBtn" hidden>求一支山水籤</button>
+      </div>
+      <div class="map-guide">
+        <img class="guide" id="mapGuideImg" alt="">
+        <div class="bubble">
+          <span class="speaker" id="mapSpeaker"></span>
+          <p id="mapLine"></p>
+        </div>
+      </div>
+
+      <div class="sheet" id="pinSheet" hidden>
+        <div class="pin-thumb" id="pinThumb" hidden></div>
+        <span class="pin-no" id="pinNo"></span>
+        <h3 id="pinTitle"></h3>
+        <p id="pinIntro"></p>
+        <div class="pin-meta" id="pinMeta"></div>
+        <button class="btn" id="pinGo">進入導覽</button>
+        <button class="btn ghost-dark" id="pinClose">關閉</button>
+      </div>
+    </section>
+
+    <!-- 導覽點 -->
+    <section id="stop" class="screen">
+      <header class="topbar">
+        <button class="icon-btn" id="homeBtn" aria-label="回地圖">‹</button>
+        <h2 id="stopTitle"></h2>
+        <span class="progress" id="progress"></span>
+      </header>
+
+      <div class="scene" id="scene">
+        <div class="scene-inner" id="sceneInner">
+          <img id="sceneImg" alt="">
+        </div>
+        <div class="pano" id="pano" hidden></div>
+      </div>
+      <div class="scene-shade" aria-hidden="true"></div>
+      <div class="scene-hint" id="sceneHint">← 左右滑動看看 →</div>
+      <button class="gyro-btn" id="gyroBtn" aria-pressed="false">轉動手機看</button>
+      <a class="credit" id="credit" target="_blank" rel="noopener" hidden></a>
+      <div class="counter" id="counter" hidden></div>
+      <div class="choice" id="choice" hidden></div>
+
+      <div class="guide-panel" id="guidePanel">
+        <img class="guide" id="guideImg" alt="">
+        <!-- 虛擬志永哥：AI 講話影片（透明背景 WebM，聲音在影片裡） -->
+        <video class="guide guide-video" id="guideVideo" playsinline preload="auto" hidden></video>
+        <div class="bubble" id="bubble">
+          <span class="speaker" id="speaker"></span>
+          <p id="line"></p>
+          <span class="next" id="nextMark">▼</span>
+        </div>
+      </div>
+
+      <!-- 熱點說明卡 -->
+      <div class="sheet" id="sheet" hidden>
+        <h3 id="sheetTitle"></h3>
+        <p id="sheetDesc"></p>
+        <button class="btn" id="sheetClose">知道了</button>
+      </div>
+
+      <!-- 抬頭看 -->
+      <div class="lookup" id="lookup" hidden>
+        <div class="lookup-icon">↑</div>
+        <p id="lookupText"></p>
+        <button class="btn primary" id="lookupDone">看到了！</button>
+      </div>
+
+      <!-- 蓋章 -->
+      <div class="stamp-layer" id="stampLayer" hidden>
+        <div class="stamp" id="stamp"><small>泰興宮</small><strong id="stampName"></strong><small>到此一遊</small></div>
+        <p id="stampMsg"></p>
+        <button class="btn primary" id="cardFromStamp" hidden>領取集章完成卡</button>
+        <button class="btn primary" id="toMapBtn">回到地圖，選下一站</button>
+        <button class="btn ghost" id="replayBtn">再玩一次</button>
+      </div>
+    </section>
+
+    <!-- 大茅埔山水籤 -->
+    <div class="qian-layer" id="qianLayer" hidden>
+      <header class="qian-top">
+        <button class="icon-btn" id="qianClose" aria-label="關閉">‹</button>
+        <h2>大茅埔山水籤</h2>
+      </header>
+      <div class="qian-stage" id="qianStage"></div>
+      <div class="qian-guide">
+        <img class="guide" id="qianGuide" alt="">
+        <div class="bubble">
+          <span class="speaker" id="qianSpeaker"></span>
+          <p id="qianLine"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 集章卡 -->
+    <div class="card-layer" id="cardLayer" hidden>
+      <div class="card-box">
+        <img id="cardImg" alt="泰興宮集章卡">
+        <p class="card-tip">也可以長按圖片直接儲存</p>
+        <label class="card-name">卡片上的名字（可不填）
+          <input id="cardName" maxlength="10" placeholder="例如：小明" autocomplete="nickname">
+        </label>
+        <div class="card-actions">
+          <button class="btn primary" id="cardShare" hidden>分享</button>
+          <button class="btn primary" id="cardSave">存成圖片</button>
+        </div>
+        <button class="btn ghost" id="cardClose">關閉</button>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" hidden></div>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

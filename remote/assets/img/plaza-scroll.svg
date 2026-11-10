@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 500" width="1300" height="500">
+  <!-- 大茅埔聚落俯視示意：背山面溪、中軸大街、環庄護城河、刺竹、隘門、水口轉彎（依文獻繪製，非實測） -->
+  <defs>
+    <pattern id="tile" width="6" height="6" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" fill="#c4553b"/><path d="M0 5.5H6" stroke="#a3402b" stroke-width="1.2"/>
+    </pattern>
+    <pattern id="field" width="14" height="14" patternUnits="userSpaceOnUse">
+      <rect width="14" height="14" fill="#cfe0b4"/><path d="M0 7H14" stroke="#b9cf98" stroke-width="1.5"/>
+    </pattern>
+    <path id="hU" d="M-48 -28H48V28H22V-6H-22V28H-48Z"/>
+  </defs>
+  <style>
+    .smoke{animation:smoke 3.6s ease-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+    .smoke.s2{animation-delay:1.2s}.smoke.s3{animation-delay:2.4s}
+    @keyframes smoke{0%{opacity:0;transform:translateY(8px) scale(.7)}30%{opacity:.75}100%{opacity:0;transform:translateY(-26px) scale(1.25)}}
+    .dash{animation:dash 3s linear infinite}
+    @keyframes dash{to{stroke-dashoffset:-28}}
+    .flag{animation:flag 1.6s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:0 50%}
+    .flag.r{transform-origin:100% 50%}
+    @keyframes flag{0%{transform:skewY(-6deg) scaleX(.94)}100%{transform:skewY(5deg) scaleX(1.04)}}
+    .sway{animation:sway 2.8s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:50% 100%}
+    @keyframes sway{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
+    .lantern{animation:lantern 3.2s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:50% 0}
+    .lantern.b{animation-delay:-1.6s}
+    @keyframes lantern{from{transform:rotate(-5deg)}to{transform:rotate(5deg)}}
+    .glow{animation:glow 2.6s ease-in-out infinite alternate}
+    @keyframes glow{from{opacity:.25}to{opacity:.7}}
+    .bird{animation:bird 28s linear infinite}
+    .bird.b2{animation-duration:34s;animation-delay:-12s}
+    @keyframes bird{from{transform:translate(-120px,0)}to{transform:translate(1450px,-70px)}}
+    .wing{animation:flap .45s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:50% 100%}
+    @keyframes flap{to{transform:scaleY(.35)}}
+    .drift{animation:drift 9s ease-in-out infinite alternate}
+    .drift.slow{animation-duration:14s}
+    @keyframes drift{from{transform:translateX(-14px)}to{transform:translateX(14px)}}
+    @media (prefers-reduced-motion: reduce){*{animation:none!important}}
+  </style>
+
+  <rect width="1300" height="500" fill="url(#field)"/>
+
+  <!-- 莊背山 -->
+  <path d="M0 18H150Q120 80 140 150Q110 230 135 300Q112 380 140 482H0Z" fill="#62845a"/>
+  <path d="M0 18H95Q75 120 92 250Q70 360 90 482H0Z" fill="#4f7249"/>
+  <text x="48" y="250" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="20" font-weight="900" fill="#eef3e4" writing-mode="tb" letter-spacing="6">莊背山</text>
+
+  <!-- 大甲溪 -->
+  <path d="M1190 18Q1220 140 1200 250Q1180 370 1210 482H1300V18Z" fill="#8fb8cf"/>
+  <g fill="none" stroke="#e6f2f8" stroke-width="2.5" stroke-linecap="round" class="ripple r2">
+    <path d="M1230 90q10 12 0 24M1250 200q10 12 0 24M1235 320q10 12 0 24M1255 420q10 12 0 24"/>
+  </g>
+  <text x="1262" y="160" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="20" font-weight="900" fill="#2f5a72" writing-mode="tb" letter-spacing="6">大甲溪</text>
+
+  <!-- 刺竹（護城河外圈） -->
+  <rect x="150" y="50" width="920" height="400" rx="46" fill="none" stroke="#4f8a3e" stroke-width="12" stroke-linecap="round" stroke-dasharray="1 15"/>
+  <!-- 環庄護城河 -->
+  <rect x="170" y="70" width="880" height="360" rx="30" fill="#e9dfc6" stroke="#7fb6d6" stroke-width="14"/>
+  <!-- 水口：出庄前轉個彎 -->
+  <path d="M1050 404H1112V482" fill="none" stroke="#7fb6d6" stroke-width="14" stroke-linejoin="round"/>
+
+  <!-- 棋盤式道路 -->
+  <g fill="#d3c4a5">
+    <rect x="413" y="78" width="14" height="344"/><rect x="593" y="78" width="14" height="344"/>
+    <rect x="773" y="78" width="14" height="344"/><rect x="953" y="78" width="14" height="344"/>
+  </g>
+  <!-- 中軸大街 -->
+  <rect x="250" y="236" width="940" height="28" fill="#c2b08a"/>
+  <path d="M270 250H1180" stroke="#f4ecdc" stroke-width="2" stroke-dasharray="10 8"/>
+  <text x="700" y="232" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="15" font-weight="900" fill="#6d4a2a" letter-spacing="4">中軸大街</text>
+
+  <!-- 夥房（上下對稱） -->
+  <g fill="url(#tile)" stroke="#7a2a1c" stroke-width="1.5">
+    <use href="#hU" x="510" y="150"/><use href="#hU" x="690" y="150"/><use href="#hU" x="870" y="150"/>
+    <use href="#hU" x="510" y="350" transform="rotate(180 510 350)"/>
+    <use href="#hU" x="690" y="350" transform="rotate(180 690 350)"/>
+    <use href="#hU" x="870" y="350" transform="rotate(180 870 350)"/>
+    <use href="#hU" x="330" y="150"/><use href="#hU" x="330" y="350" transform="rotate(180 330 350)"/>
+  </g>
+
+  <!-- 泰興宮（中軸線起點，背山面溪） -->
+  <g>
+    <rect x="196" y="210" width="62" height="80" rx="3" fill="url(#tile)" stroke="#7a1712" stroke-width="2"/>
+    <path d="M227 206V294" stroke="#e3b54a" stroke-width="4" stroke-linecap="round"/>
+    <rect x="203" y="236" width="48" height="28" rx="4" fill="#fbf5e9" stroke="#7a1712"/>
+    <text x="227" y="255" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="12" font-weight="900" fill="#7a1712">泰興宮</text>
+  </g>
+
+  <!-- 隘門 -->
+  <g>
+    <rect x="1036" y="226" width="30" height="48" fill="#8a5a32" stroke="#4a2c18" stroke-width="1.5"/>
+    <path d="M1028 228H1074L1066 218H1036Z" fill="url(#tile)" stroke="#7a2a1c"/>
+    <rect x="1044" y="238" width="14" height="36" fill="#3b2416"/>
+  </g>
+  <text x="1051" y="300" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="13" font-weight="900" fill="#6d4a2a">隘門</text>
+
+  <!-- 方向提示 -->
+  <text x="290" y="470" font-family="Noto Sans TC, sans-serif" font-size="13" fill="#4a5a3a">背山 ←</text>
+  <text x="1000" y="470" text-anchor="end" font-family="Noto Sans TC, sans-serif" font-size="13" fill="#4a5a3a">→ 面溪</text>
+  <text x="1290" y="476" text-anchor="end" font-family="Noto Sans TC, sans-serif" font-size="11" fill="#2f5a72" opacity=".9">插畫示意</text>
+
+  <!-- ===== 動態細節 ===== -->
+  <style>
+    .flow{animation:flow 7s linear infinite}
+    @keyframes flow{to{stroke-dashoffset:-108}}
+    .ripple{animation:ripple 6s linear infinite}
+    .ripple.r2{animation-delay:-3s}
+    @keyframes ripple{0%{transform:translateY(-30px);opacity:0}20%{opacity:1}80%{opacity:1}100%{transform:translateY(50px);opacity:0}}
+    .cloud{animation:cloud 70s linear infinite}
+    .cloud.c2{animation-duration:90s;animation-delay:-45s}
+    @keyframes cloud{from{transform:translateX(-360px)}to{transform:translateX(1500px)}}
+  </style>
+  <!-- 護城河、水口的水流 -->
+  <rect x="170" y="70" width="880" height="360" rx="30" fill="none" stroke="#e4f4fb" stroke-width="3" stroke-dasharray="18 18" class="flow" opacity=".85"/>
+  <path d="M1050 404H1112V482" fill="none" stroke="#e4f4fb" stroke-width="3" stroke-dasharray="18 18" class="flow" opacity=".85"/>
+  <!-- 大甲溪的水波往下游流 -->
+  <g fill="none" stroke="#f2f9fc" stroke-width="2" stroke-linecap="round">
+    <path class="ripple" d="M1222 140q12 10 0 22M1244 280q12 10 0 22M1226 400q12 10 0 22"/>
+    <path class="ripple r2" d="M1250 60q12 10 0 22M1236 230q12 10 0 22M1258 350q12 10 0 22"/>
+  </g>
+  <!-- 護城河外、溪邊的果樹（柑橘、梨） -->
+  <g>
+    <g transform="translate(1135 110)"><circle r="17" fill="#5f8f3a"/><circle cx="-6" cy="-4" r="3" fill="#f39a1e"/><circle cx="6" cy="2" r="3" fill="#f39a1e"/><circle cx="-2" cy="7" r="3" fill="#f39a1e"/></g>
+    <g transform="translate(1150 175)"><circle r="15" fill="#6a9a44"/><circle cx="-5" cy="-3" r="3" fill="#d9d77a"/><circle cx="5" cy="4" r="3" fill="#d9d77a"/></g>
+    <g transform="translate(1132 330)"><circle r="17" fill="#5f8f3a"/><circle cx="-6" cy="-5" r="3" fill="#f39a1e"/><circle cx="6" cy="0" r="3" fill="#f39a1e"/><circle cx="0" cy="8" r="3" fill="#f39a1e"/></g>
+    <g transform="translate(1152 400)"><circle r="14" fill="#6a9a44"/><circle cx="-4" cy="-3" r="3" fill="#d9d77a"/><circle cx="5" cy="4" r="3" fill="#d9d77a"/></g>
+    <g transform="translate(1140 455)"><circle r="12" fill="#5f8f3a"/><circle cx="-3" cy="-2" r="2.6" fill="#f39a1e"/><circle cx="4" cy="3" r="2.6" fill="#f39a1e"/></g>
+  </g>
+  <!-- 夥房旁的小菜園 -->
+  <g fill="#9cc27a" opacity=".9">
+    <rect x="300" y="196" width="60" height="22" rx="3"/><rect x="480" y="282" width="60" height="22" rx="3"/>
+    <rect x="840" y="196" width="60" height="22" rx="3"/><rect x="660" y="282" width="60" height="22" rx="3"/>
+  </g>
+  <g stroke="#7ba65a" stroke-width="1.5"><path d="M304 207H356M484 293H536M844 207H896M664 293H716"/></g>
+  <!-- 廟前香煙 -->
+  <path class="smoke s1" d="M227 204q-6-8 0-15q6-7 0-14" fill="none" stroke="#9a8f80" stroke-width="2" stroke-linecap="round" opacity="0"/><path class="smoke s2" d="M227 204q-6-8 0-15q6-7 0-14" fill="none" stroke="#9a8f80" stroke-width="2" stroke-linecap="round" opacity="0"/><path class="smoke s3" d="M227 204q-6-8 0-15q6-7 0-14" fill="none" stroke="#9a8f80" stroke-width="2" stroke-linecap="round" opacity="0"/>
+  <!-- 中軸大街上走動的庄民 -->
+  <g>
+    <g><circle cy="-9" r="4" fill="#6d4a2a"/><path d="M-4 -5h8l2 10h-12z" fill="#3f6c8a"/>
+      <animateMotion dur="34s" repeatCount="indefinite" path="M275 250H1030" rotate="0"/></g>
+    <g><circle cy="-9" r="4" fill="#6d4a2a"/><path d="M-4 -5h8l2 10h-12z" fill="#b8322a"/>
+      <animateMotion dur="40s" begin="-18s" repeatCount="indefinite" path="M1030 250H275" rotate="0"/></g>
+    <g><circle cy="-9" r="4" fill="#6d4a2a"/><path d="M-5 -14h10l-5-5z" fill="#c9a25a"/><path d="M-4 -5h8l2 10h-12z" fill="#5f8f3a"/>
+      <animateMotion dur="26s" begin="-6s" repeatCount="indefinite" path="M600 90V410" rotate="0"/></g>
+  </g>
+  <!-- 雲影 -->
+  <g class="cloud" opacity=".22"><ellipse cx="0" cy="130" rx="120" ry="40" fill="#fff"/><ellipse cx="70" cy="110" rx="80" ry="34" fill="#fff"/></g>
+  <g class="cloud c2" opacity=".18"><ellipse cx="0" cy="360" rx="140" ry="44" fill="#fff"/><ellipse cx="-80" cy="380" rx="70" ry="30" fill="#fff"/></g>
+  
+  <!-- 飛鳥 -->
+  <g class="bird"><g transform="translate(0 70)">
+    <path class="wing" d="M0 0q8-8 16 0q8-8 16 0" fill="none" stroke="#4a3a2c" stroke-width="2.4" stroke-linecap="round"/>
+    <path class="wing" d="M26 14q6-6 12 0q6-6 12 0" fill="none" stroke="#4a3a2c" stroke-width="2" stroke-linecap="round"/>
+  </g></g>
+  <g class="bird b2"><g transform="translate(0 120)">
+    <path class="wing" d="M0 0q7-7 14 0q7-7 14 0" fill="none" stroke="#4a3a2c" stroke-width="2.2" stroke-linecap="round"/>
+  </g></g>
+
+  <rect x="0" y="0" width="1300" height="14" fill="#7a1712"/>
+  <rect x="0" y="486" width="1300" height="14" fill="#7a1712"/>
+  <rect x="0" y="14" width="1300" height="4" fill="#e3b54a"/>
+  <rect x="0" y="482" width="1300" height="4" fill="#e3b54a"/>
+</svg>

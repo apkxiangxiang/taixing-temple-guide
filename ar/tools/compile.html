@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>編譯辨識檔</title>
+<style>
+  :root { color-scheme: dark; --bg: #1a120c; --fg: #fbf3e4; --gold: #f1b94a; }
+  body { background: var(--bg); color: var(--fg); font-family: system-ui, "Microsoft JhengHei", sans-serif; max-width: 720px; margin: 0 auto; padding: 24px 16px; line-height: 1.7; }
+  h1 { font-size: 22px; } button { font: inherit; background: var(--gold); border: 0; border-radius: 999px; padding: 10px 24px; cursor: pointer; }
+  li img { height: 64px; vertical-align: middle; margin-right: 8px; border-radius: 6px; }
+  #log { white-space: pre-wrap; font-family: ui-monospace, monospace; font-size: 13px; opacity: .85; }
+  a { color: var(--gold); }
+</style>
+<script type="importmap">
+{ "imports": { "mindar-image": "https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image.prod.js" } }
+</script>
+</head>
+<body>
+<h1>編譯辨識檔（targets.mind）</h1>
+<p>把 <code>config.js</code> 裡所有導覽點的辨識照片編譯成一個檔案。編好後放到 <code>web/assets/targets.mind</code>，
+再把 config 的 <code>mindFile</code> 設成 <code>"assets/targets.mind"</code>，遊客的手機就不用現場編譯。</p>
+<ol id="list"></ol>
+<button id="go">開始編譯</button>
+<p id="log"></p>
+<script type="module">
+  import { Compiler } from "mindar-image";
+  import { CONFIG } from "../js/config.js";
+  const points = CONFIG.points.filter((p) => p.image && p.script.length);
+  const src = (p) => "../" + p.image;
+  document.getElementById("list").innerHTML = points.map((p) => `<li><img src="${src(p)}">${p.name}</li>`).join("");
+  const log = (t) => (document.getElementById("log").textContent += t + "\n");
+  document.getElementById("go").onclick = async () => {
+    const images = await Promise.all(points.map((p) => new Promise((res, rej) => {
+      const im = new Image(); im.onload = () => res(im); im.onerror = () => rej(new Error(p.image)); im.src = src(p);
+    })));
+    const c = new Compiler();
+    const t0 = performance.now();
+    const data = await c.compileImageTargets(images, (p) => (document.getElementById("go").textContent = `編譯中 ${Math.round(p)}%`));
+    log(`完成，${((performance.now() - t0) / 1000).toFixed(1)} 秒`);
+    // 每張圖抓到的特徵點數：太少（例如 < 100）代表這張不好辨識，建議換目標或重拍
+    data.forEach((d, i) => {
+      const n = d.matchingData.reduce((sum, m) => sum + m.maximaPoints.length + m.minimaPoints.length, 0);
+      log(`${points[i].name}：特徵點 ${n}`);
+    });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([c.exportData()]));
+    a.download = "targets.mind";
+    a.textContent = "下載 targets.mind";
+    document.getElementById("log").after(a);
+    document.getElementById("go").textContent = "重新編譯";
+  };
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1a120c">
+<title>跟志永哥逛泰興宮</title>
+<link rel="icon" href="ar/assets/icon-192.png">
+<style>
+  :root { --bg: #1a120c; --fg: #fbf3e4; --muted: #d8c8ad; --gold: #f1b94a; --card: rgba(255,255,255,.06); --line: rgba(241,185,74,.4); color-scheme: dark; }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    min-height: 100dvh; color: var(--fg);
+    background: radial-gradient(120% 70% at 50% 0%, #4a2414 0%, var(--bg) 70%) var(--bg);
+    font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+    display: flex; justify-content: center; padding: calc(env(safe-area-inset-top, 0px) + 28px) 16px 32px;
+  }
+  main { width: 100%; max-width: 440px; display: flex; flex-direction: column; gap: 18px; }
+  header { display: flex; align-items: flex-end; gap: 12px; }
+  header img { width: 112px; height: auto; flex: none; filter: drop-shadow(0 8px 18px rgba(0,0,0,.5)); }
+  .kicker { color: var(--gold); letter-spacing: .2em; font-size: 13px; }
+  h1 { font-size: 34px; line-height: 1.2; font-weight: 900; margin: 6px 0 8px; }
+  .lead { color: var(--muted); line-height: 1.7; font-size: 15px; }
+  h2 { font-size: 15px; color: var(--muted); font-weight: 500; margin-top: 6px; }
+  a.mode {
+    display: block; text-decoration: none; color: inherit;
+    background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 18px 18px 16px;
+    transition: transform .15s, background .15s;
+  }
+  a.mode:active { transform: scale(.98); }
+  a.mode:hover { background: rgba(241,185,74,.1); }
+  .where { font-size: 13px; color: var(--gold); letter-spacing: .1em; }
+  .mode b { display: block; font-size: 22px; margin: 4px 0 6px; }
+  .mode p { color: var(--muted); font-size: 14.5px; line-height: 1.65; }
+  .go { display: inline-block; margin-top: 12px; background: var(--gold); color: #2a1b10; font-weight: 700; border-radius: 999px; padding: 8px 20px; font-size: 15px; }
+  .fine { font-size: 12.5px; color: var(--muted); line-height: 1.6; opacity: .85; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="remote/assets/img/guide-real-intro.webp" alt="志永哥">
+    <div>
+      <p class="kicker">台中東勢・慶東泰興宮</p>
+      <h1>跟志永哥<br>逛泰興宮</h1>
+    </div>
+  </header>
+  <p class="lead">在地導覽員志永哥帶你認識泰興宮與大茅埔的故事。你現在在哪裡？</p>
+
+  <a class="mode" href="remote/">
+    <span class="where">我不在廟裡</span>
+    <b>遠端導覽</b>
+    <p>在家也能逛。看照片和環景，志永哥一站一站講給你聽，還有問答、找細節和集章。</p>
+    <span class="go">開始遠端導覽</span>
+  </a>
+
+  <a class="mode" href="ar/">
+    <span class="where">我人在泰興宮</span>
+    <b>現場 AR 導覽</b>
+    <p>打開相機，對準廟裡的匾額、木牌、彩繪。發出金光後點一下，志永哥就出現在旁邊開口介紹。</p>
+    <span class="go">打開相機</span>
+  </a>
+
+  <p class="fine">現場 AR 需要使用相機，建議用 Android Chrome。畫面只在手機上處理，不錄影、不上傳。<br>志永哥的影像與聲音經本人同意使用。</p>
+</main>
+</body>
+</html>

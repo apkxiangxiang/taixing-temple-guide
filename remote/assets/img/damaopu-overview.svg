@@ -1,0 +1,241 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1131" width="1600" height="1131">
+  <!-- 大茅埔總覽圖：依手繪稿（素材/照片/map.png）的相對位置重繪，古輿圖風格；示意非實測 -->
+  <defs>
+    <filter id="paper" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 .45  0 0 0 0 .34  0 0 0 0 .2  0 0 0 .09 0"/>
+      <feComposite in2="SourceGraphic" operator="over"/>
+    </filter>
+    <filter id="blot" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="9"/>
+      <feDisplacementMap in="SourceGraphic" scale="5"/>
+    </filter>
+    <radialGradient id="vig" cx="50%" cy="48%" r="70%">
+      <stop offset="62%" stop-color="#7a5a32" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#7a5a32" stop-opacity=".28"/>
+    </radialGradient>
+    <linearGradient id="peakA" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3f6f68"/><stop offset=".55" stop-color="#6e9a86"/><stop offset="1" stop-color="#c9cfa6"/>
+    </linearGradient>
+    <linearGradient id="peakB" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5d8a74"/><stop offset=".6" stop-color="#93b08c"/><stop offset="1" stop-color="#dcd6b0"/>
+    </linearGradient>
+    <pattern id="roof" width="7" height="7" patternUnits="userSpaceOnUse">
+      <rect width="7" height="7" fill="#a8432e"/><path d="M0 6.2H7" stroke="#7d2e1f" stroke-width="1.3"/>
+    </pattern>
+
+    <!-- 山：一座峰 -->
+    <symbol id="peak" viewBox="-100 -120 200 125" overflow="visible">
+      <path d="M-100 0C-70 -20 -55 -70 -28 -92C-14 -104 6 -112 18 -98C42 -72 64 -30 100 0Z" fill="url(#peakA)" stroke="#2b2118" stroke-width="3" stroke-linejoin="round"/>
+      <g fill="none" stroke="#2b2118" stroke-width="2" stroke-linecap="round" opacity=".55">
+        <path d="M-20 -88C-26 -60 -40 -36 -58 -14M2 -100C-2 -70 -10 -44 -20 -20M24 -86C30 -60 40 -40 56 -16"/>
+      </g>
+      <g fill="#2b2118" opacity=".7"><circle cx="-6" cy="-102" r="3"/><circle cx="10" cy="-106" r="2.5"/><circle cx="-30" cy="-86" r="2.5"/></g>
+    </symbol>
+    <symbol id="peak2" viewBox="-100 -120 200 125" overflow="visible">
+      <path d="M-100 0C-66 -26 -46 -76 -10 -96C10 -106 30 -86 48 -60C64 -36 80 -14 100 0Z" fill="url(#peakB)" stroke="#2b2118" stroke-width="3" stroke-linejoin="round"/>
+      <g fill="none" stroke="#2b2118" stroke-width="2" stroke-linecap="round" opacity=".5">
+        <path d="M-8 -92C-16 -64 -30 -40 -50 -18M20 -80C22 -56 30 -34 46 -14"/>
+      </g>
+    </symbol>
+
+    <!-- 樹：點葉 -->
+    <symbol id="tree" viewBox="-20 -40 40 44" overflow="visible">
+      <path d="M0 2V-14" stroke="#2b2118" stroke-width="2.5" stroke-linecap="round"/>
+      <g fill="#4d7a5c" stroke="#2b2118" stroke-width="1.6">
+        <circle cx="0" cy="-26" r="11"/><circle cx="-9" cy="-17" r="8"/><circle cx="9" cy="-17" r="8"/>
+      </g>
+    </symbol>
+    <!-- 刺竹 -->
+    <symbol id="bamboo" viewBox="-20 -50 40 54" overflow="visible">
+      <g fill="none" stroke="#3d6b4c" stroke-width="2.4" stroke-linecap="round">
+        <path d="M-4 2Q-6 -24 -12 -46M2 2Q4 -26 10 -48M0 2V-40"/>
+      </g>
+      <g fill="#5b8a5f" stroke="#2b2118" stroke-width="1"><path d="M-12 -40l-10 4 10 2zM10 -42l10 4-10 2zM0 -34l-10 4 10 2zM0 -26l10 4-10 2z"/></g>
+    </symbol>
+
+    <!-- 營頭：小廟 -->
+    <symbol id="shrine" viewBox="-50 -78 100 84" overflow="visible">
+      <rect x="-44" y="-8" width="88" height="12" fill="#cbb48a" stroke="#2b2118" stroke-width="2.4"/>
+      <rect x="-30" y="-44" width="60" height="36" fill="#d9c49a" stroke="#2b2118" stroke-width="2.4"/>
+      <rect x="-12" y="-36" width="24" height="28" fill="#7d2e1f" stroke="#2b2118" stroke-width="2"/>
+      <path d="M-11 -24H11" stroke="#e7b44a" stroke-width="2"/>
+      <path d="M-46 -42Q-38 -48 -32 -58H32Q38 -48 46 -42Q40 -40 36 -44H-36Q-40 -40 -46 -42Z" fill="url(#roof)" stroke="#2b2118" stroke-width="2.4" stroke-linejoin="round"/>
+      <path d="M-34 -58Q-36 -70 -46 -74M34 -58Q36 -70 46 -74M-30 -60H30" fill="none" stroke="#2b2118" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="0" cy="-66" r="5" fill="#e7b44a" stroke="#2b2118" stroke-width="1.6"/>
+    </symbol>
+
+    <!-- 營頭標籤 -->
+    <symbol id="tag" viewBox="-26 -60 52 120" overflow="visible">
+      <rect x="-24" y="-58" width="48" height="116" rx="4" fill="#f6ecd2" stroke="#2b2118" stroke-width="2.4"/>
+      <rect x="-19" y="-53" width="38" height="106" rx="2" fill="none" stroke="#a8432e" stroke-width="1.4"/>
+    </symbol>
+
+    <path id="rdMain" d="M180 1006C500 986 900 962 1290 930S1470 902 1500 898"/>
+    <path id="rdCS" d="M400 756C600 752 880 748 1040 744C1160 732 1260 694 1350 666"/>
+    <path id="rdQD" d="M826 492C824 640 822 780 820 940"/>
+  </defs>
+
+  <!-- 紙 -->
+  <rect width="1600" height="1131" fill="#efe3c4" filter="url(#paper)"/>
+  <path d="M0 0H1600V420C1300 360 1000 380 800 370S300 380 0 430Z" fill="#e7dcbc" opacity=".7"/>
+
+  <!-- 祥雲 -->
+  <g fill="none" stroke="#a8432e" stroke-width="3" stroke-linecap="round" opacity=".55">
+    <path d="M1300 92c-20 0-30-26-8-34 18-6 30 10 22 22M1314 80c30-26 70-20 80 6 14-12 40-6 40 14 0 14-14 22-28 18H1290"/>
+  </g>
+
+  <!-- 莊背山：遠山 -->
+  <g filter="url(#blot)">
+    <use href="#peak2" x="1300" y="210" width="380" height="240"/>
+    <use href="#peak2" x="1080" y="180" width="320" height="200"/>
+    <use href="#peak2" x="1450" y="280" width="260" height="170"/>
+    <use href="#peak" x="420" y="120" width="560" height="350"/>
+    <use href="#peak" x="700" y="40" width="720" height="440"/>
+    <use href="#peak2" x="1000" y="150" width="480" height="300"/>
+    <use href="#peak2" x="200" y="270" width="420" height="250"/>
+    <!-- 左側近丘 -->
+    <use href="#peak2" x="-120" y="330" width="440" height="270"/>
+    <use href="#peak" x="140" y="380" width="380" height="230"/>
+    <use href="#peak2" x="20" y="580" width="300" height="180"/>
+    <use href="#peak2" x="1280" y="340" width="300" height="140"/>
+  </g>
+  <text x="560" y="250" font-family="Noto Serif TC, serif" font-size="30" font-weight="900" fill="#f6ecd2" stroke="#2b2118" stroke-width="1" letter-spacing="10" writing-mode="tb">莊背山</text>
+
+  <!-- 樹與刺竹 -->
+  <g>
+    <use href="#tree" x="40" y="520" width="60" height="66"/><use href="#tree" x="100" y="500" width="50" height="55"/>
+    <use href="#tree" x="300" y="580" width="56" height="62"/><use href="#tree" x="380" y="560" width="46" height="50"/>
+    <use href="#tree" x="60" y="690" width="58" height="64"/><use href="#tree" x="150" y="720" width="48" height="53"/>
+    <use href="#tree" x="440" y="460" width="44" height="48"/><use href="#tree" x="1430" y="420" width="50" height="55"/>
+    <use href="#tree" x="1500" y="440" width="44" height="48"/><use href="#tree" x="1530" y="560" width="50" height="55"/>
+    <use href="#bamboo" x="460" y="610" width="40" height="54"/><use href="#bamboo" x="480" y="700" width="40" height="54"/>
+    <use href="#bamboo" x="1390" y="620" width="40" height="54"/><use href="#bamboo" x="1420" y="690" width="40" height="54"/>
+    <use href="#tree" x="1490" y="980" width="50" height="55"/><use href="#tree" x="120" y="1030" width="50" height="55"/>
+  </g>
+
+  <!-- 水圳與溪 -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <g stroke="#2b2118" stroke-width="18">
+      <path d="M560 560C330 590 300 790 330 900S420 1052 520 1064"/>
+      <path d="M648 480C656 560 646 640 654 724"/>
+      <path d="M1052 452C1052 600 1062 700 1100 762C1200 784 1350 774 1460 774"/>
+      <path d="M960 456C1100 446 1200 424 1300 384"/>
+    </g>
+    <g stroke="#9cc3c4" stroke-width="13">
+      <path d="M560 560C330 590 300 790 330 900S420 1052 520 1064"/>
+      <path d="M648 480C656 560 646 640 654 724"/>
+      <path d="M1052 452C1052 600 1062 700 1100 762C1200 784 1350 774 1460 774"/>
+      <path d="M960 456C1100 446 1200 424 1300 384"/>
+    </g>
+    <!-- 溪 -->
+    <path d="M330 1090C600 1112 1000 1092 1360 1048C1460 1036 1540 1040 1640 1046" stroke="#2b2118" stroke-width="68"/>
+    <path d="M330 1090C600 1112 1000 1092 1360 1048C1460 1036 1540 1040 1640 1046" stroke="#9cc3c4" stroke-width="62"/>
+    <g stroke="#f6ecd2" stroke-width="2.5" opacity=".9">
+      <path d="M560 1100q14-10 28 0t28 0M760 1096q14-10 28 0t28 0M980 1086q14-10 28 0t28 0M1200 1060q14-10 28 0t28 0M1420 1050q14-10 28 0t28 0M650 1118q14-10 28 0t28 0M880 1114q14-10 28 0t28 0M1100 1100q14-10 28 0t28 0M1320 1080q14-10 28 0t28 0"/>
+    </g>
+  </g>
+
+  <!-- 道路：墨線雙鉤 -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <g stroke="#2b2118">
+      <use href="#rdMain" stroke-width="40"/>
+      <use href="#rdCS" stroke-width="24"/>
+      <use href="#rdQD" stroke-width="24"/>
+      <path stroke-width="20" d="M672 490C750 488 900 478 1140 456C1250 436 1350 396 1480 362M672 490C670 640 670 800 668 948M1016 456L1020 860M1144 456L1146 716M672 556H1016M672 632H1016M672 690H1016M460 756L456 984M1282 680L1288 914M1180 764C1300 760 1400 752 1500 744"/>
+    </g>
+    <g stroke="#f3e7c8">
+      <use href="#rdMain" stroke-width="33"/>
+      <use href="#rdCS" stroke-width="18"/>
+      <use href="#rdQD" stroke-width="18"/>
+      <path stroke-width="14" d="M672 490C750 488 900 478 1140 456C1250 436 1350 396 1480 362M672 490C670 640 670 800 668 948M1016 456L1020 860M1144 456L1146 716M672 556H1016M672 632H1016M672 690H1016M460 756L456 984M1282 680L1288 914M1180 764C1300 760 1400 752 1500 744"/>
+    </g>
+    <use href="#rdMain" stroke="#c9b48a" stroke-width="2" stroke-dasharray="14 12"/>
+  </g>
+
+  <!-- 田 -->
+  <g fill="none" stroke="#8a9a5b" stroke-width="2" opacity=".6">
+    <path d="M700 580h70M700 600h70M860 580h120M860 600h120M700 660h70M860 660h120M700 720h80M860 720h120M700 800h90M860 800h120M700 860h90M860 860h120M1060 520h60M1060 540h60M1060 600h60M1170 820h90M1170 850h90M520 820h120M520 860h120M520 900h120"/>
+  </g>
+
+  <!-- 泰興宮（國王廟） -->
+  <g transform="translate(848 0)">
+    <rect x="-168" y="452" width="336" height="22" fill="#cbb48a" stroke="#2b2118" stroke-width="3"/>
+    <rect x="-140" y="352" width="280" height="100" fill="#d9c49a" stroke="#2b2118" stroke-width="3"/>
+    <rect x="-48" y="374" width="96" height="78" fill="#7d2e1f" stroke="#2b2118" stroke-width="2.5"/>
+    <path d="M0 374V452" stroke="#2b2118" stroke-width="2"/>
+    <g fill="#e7b44a" stroke="#2b2118" stroke-width="1.4"><circle cx="-12" cy="414" r="3"/><circle cx="12" cy="414" r="3"/></g>
+    <rect x="-118" y="384" width="44" height="68" fill="#bfa77a" stroke="#2b2118" stroke-width="2.5"/>
+    <rect x="74" y="384" width="44" height="68" fill="#bfa77a" stroke="#2b2118" stroke-width="2.5"/>
+    <circle cx="-96" cy="370" r="7" fill="none" stroke="#2b2118" stroke-width="2"/>
+    <circle cx="96" cy="370" r="7" fill="none" stroke="#2b2118" stroke-width="2"/>
+    <!-- 匾 -->
+    <rect x="-42" y="356" width="84" height="16" fill="#2b2118"/>
+    <text x="0" y="369" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="13" font-weight="900" fill="#e7b44a" letter-spacing="4">國王廟</text>
+    <!-- 下簷 -->
+    <path d="M-190 352Q-176 340 -160 316H160Q176 340 190 352Q178 356 168 348H-168Q-178 356 -190 352Z" fill="url(#roof)" stroke="#2b2118" stroke-width="3" stroke-linejoin="round"/>
+    <!-- 上簷 -->
+    <rect x="-96" y="276" width="192" height="40" fill="#d9c49a" stroke="#2b2118" stroke-width="2.5"/>
+    <rect x="-40" y="284" width="80" height="16" fill="#2b2118"/>
+    <text x="0" y="297" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="12" font-weight="900" fill="#e7b44a" letter-spacing="2">三山國王</text>
+    <path d="M-150 280Q-136 266 -120 236H120Q136 266 150 280Q138 284 128 276H-128Q-138 284 -150 280Z" fill="url(#roof)" stroke="#2b2118" stroke-width="3" stroke-linejoin="round"/>
+    <!-- 燕尾脊 -->
+    <path d="M-124 236Q-128 208 -160 190M124 236Q128 208 160 190M-120 236H120" fill="none" stroke="#2b2118" stroke-width="5" stroke-linecap="round"/>
+    <!-- 剪黏雙龍與寶珠 -->
+    <g fill="none" stroke="#3f6f68" stroke-width="4" stroke-linecap="round">
+      <path d="M-90 230c0-14 14-20 22-12s-2 18 8 22 18-8 26-6"/>
+      <path d="M90 230c0-14-14-20-22-12s2 18-8 22-18-8-26-6"/>
+    </g>
+    <circle cx="0" cy="222" r="11" fill="#e7b44a" stroke="#2b2118" stroke-width="2"/>
+    <g stroke="#a8432e" stroke-width="2.5" stroke-linecap="round"><path d="M0 206v-10M-12 211l-6-7M12 211l6-7"/></g>
+    <!-- 屋簷鳳 -->
+    <g fill="#2b2118"><path d="M-196 350q-16-14-30-10 8 4 12 12z"/><path d="M196 350q16-14 30-10-8 4-12 12z"/></g>
+  </g>
+
+  <!-- 泰興宮題簽 -->
+  <g transform="translate(848 532)">
+    <rect x="-96" y="-30" width="192" height="58" rx="6" fill="#a8432e" stroke="#2b2118" stroke-width="3"/>
+    <rect x="-88" y="-22" width="176" height="42" rx="3" fill="none" stroke="#f6ecd2" stroke-width="1.6"/>
+    <text x="0" y="12" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="32" font-weight="900" fill="#f6ecd2" letter-spacing="10">泰興宮</text>
+  </g>
+
+  <!-- 五營：東南西北 -->
+  <use href="#shrine" x="542" y="512" width="100" height="84"/>
+  <use href="#shrine" x="1030" y="436" width="100" height="84"/>
+  <use href="#shrine" x="1070" y="690" width="100" height="84"/>
+  <use href="#shrine" x="508" y="856" width="120" height="100"/>
+  <g font-family="Noto Serif TC, serif" font-size="28" font-weight="900" fill="#2b2118" text-anchor="middle" writing-mode="tb" letter-spacing="8">
+    <use href="#tag" x="566" y="606" width="52" height="120"/><text x="592" y="666">東營</text>
+    <use href="#tag" x="1188" y="440" width="52" height="120"/><text x="1214" y="500">南營</text>
+    <use href="#tag" x="1188" y="690" width="52" height="120"/><text x="1214" y="750">西營</text>
+    <use href="#tag" x="380" y="850" width="52" height="120"/><text x="406" y="910">北營</text>
+  </g>
+
+  <!-- 路名 -->
+  <g font-family="Noto Serif TC, serif" font-weight="900" fill="#2b2118">
+    <text x="860" y="984" font-size="26" letter-spacing="6" transform="rotate(-2.4 860 984)">東關路（台八線）</text>
+    <text x="700" y="740" font-size="20" letter-spacing="4">慶成五巷</text>
+    <text x="842" y="840" font-size="22" letter-spacing="6" writing-mode="tb" text-anchor="middle">慶東街</text>
+  </g>
+
+  <!-- 題籤 -->
+  <g transform="translate(70 70)">
+    <rect width="96" height="300" fill="#f6ecd2" stroke="#2b2118" stroke-width="3"/>
+    <rect x="7" y="7" width="82" height="286" fill="none" stroke="#a8432e" stroke-width="1.6"/>
+    <text x="48" y="102" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="40" font-weight="900" fill="#2b2118" writing-mode="tb" letter-spacing="6">大茅埔</text>
+    <text x="48" y="226" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="26" font-weight="900" fill="#a8432e" writing-mode="tb" letter-spacing="4">總覽圖</text>
+  </g>
+  <g transform="translate(118 396)">
+    <rect x="-24" y="-24" width="48" height="48" rx="4" fill="#a8432e"/>
+    <rect x="-19" y="-19" width="38" height="38" rx="2" fill="none" stroke="#f6ecd2" stroke-width="1.6"/>
+    <text y="-1" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="15" font-weight="900" fill="#f6ecd2">東勢</text>
+    <text y="15" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="11" font-weight="900" fill="#f6ecd2">大茅埔</text>
+  </g>
+
+  <text x="1580" y="1118" text-anchor="end" font-family="Noto Serif TC, serif" font-size="16" fill="#2b2118" opacity=".7">示意圖・非實測比例</text>
+
+  <!-- 舊紙暈 -->
+  <rect width="1600" height="1131" fill="url(#vig)"/>
+  <rect x="10" y="10" width="1580" height="1111" fill="none" stroke="#2b2118" stroke-width="3"/>
+  <rect x="20" y="20" width="1560" height="1091" fill="none" stroke="#2b2118" stroke-width="1.2"/>
+</svg>
