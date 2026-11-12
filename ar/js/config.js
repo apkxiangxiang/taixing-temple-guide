@@ -29,6 +29,8 @@ export const CONFIG = {
     // heightCm = 素材畫面代表的實際高度；bottomCm = 素材底邊離地面多高
     // 目前是隊友版本的半身照（佔位），之後換成志永哥綠幕全身影片
     clips: {
+      // 虛擬志永哥待機影片：有它的話，沒有講話影片的時候一律用它（不再出現下面的照片）
+      idle:    { video: "../shared/clips/idle.webm", heightCm: 152, bottomCm: 30, loop: true },
       default: { img: "assets/guide/guide-real-default.webp", heightCm: 92, bottomCm: 80 },
       wave:    { img: "assets/guide/guide-real-wave.webp",    heightCm: 92, bottomCm: 80 },
       point:   { img: "assets/guide/guide-real-point.webp",   heightCm: 92, bottomCm: 80 },
@@ -43,7 +45,8 @@ export const CONFIG = {
     //     idle: { video: "assets/clips/idle.webm", heightCm: 172, bottomCm: 0 },
     // talk：所有講話影片共用的尺寸設定（影片畫面代表的實際高度、底邊離地、去背）
     //   透明背景 WebM 不用寫 chroma；綠幕影片寫 chroma: "#00b140"（綠幕的顏色）
-    talk: { heightCm: 172, bottomCm: 0 },
+    // 虛擬志永哥影片（柚子園影片做的）畫面從頭頂到小腿，約 152 公分、底邊離地約 30 公分
+    talk: { heightCm: 152, bottomCm: 30 },
 
     // 志永 10 個動作影片拍好後的對應建議（檔名自訂）：
     //   happy 開心笑 / angry 插腰生氣 / point 指前面激動 / think 抓頭疑惑

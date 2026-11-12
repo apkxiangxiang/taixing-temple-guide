@@ -307,6 +307,7 @@ class Guide {
   }
 
   setClip(name) {
+    if (this.clips.idle && !this.clips[name]?.video) name = "idle";   // 有虛擬人待機影片就不用照片
     const c = this.clips[name] || this.clips.idle || this.clips.default;
     if (this.cur === c) return;
     this.apply(c, true);
@@ -547,9 +548,16 @@ const voiceByText = {};
 fetch(VOICE_DIR + "manifest.json").then((r) => (r.ok ? r.json() : {}))
   .then((m) => Object.entries(m).forEach(([k, raw]) => (voiceByText[raw] = VOICE_DIR + k + ".mp3"))).catch(() => {});
 
+// 虛擬志永哥講話影片（tools/avatar_build.py batch 產生，聲音在影片裡）：一樣用原句對應
+const CLIP_DIR = "../shared/clips/ar/";
+const clipByText = {};
+fetch(CLIP_DIR + "manifest.json").then((r) => (r.ok ? r.json() : {}))
+  .then((m) => Object.entries(m).forEach(([k, raw]) => (clipByText[raw] = CLIP_DIR + k + ".webm"))).catch(() => {});
+
 let speakSeq = 0;
 async function speak(line, fallbackClip = "default") {
-  if (!line.audio && voiceByText[line.say]) line = { ...line, audio: voiceByText[line.say] };
+  if (!line.video && clipByText[line.say]) line = { ...line, video: clipByText[line.say] };
+  else if (!line.audio && voiceByText[line.say]) line = { ...line, audio: voiceByText[line.say] };
   const my = ++speakSeq;
   subtitle(line.say, line.gloss);
   let video = null;

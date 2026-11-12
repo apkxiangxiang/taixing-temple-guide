@@ -43,7 +43,7 @@ window.TOUR = {
     //     audio: "../shared/clips/door-01.m4a"    只有聲音（還沒有影片時先用）
     //   選擇題／點照片題的回應：rightVideo、wrongVideo（或 rightAudio、wrongAudio）
     //   找細節全部找到後那句：doneVideo（或 doneAudio）
-    idle: null,
+    idle: "../shared/clips/idle.webm",   // 虛擬志永哥待機（16 秒，頭尾接得起來）
   },
 
   // 照片來源（own: true 是團隊自己拍的，其餘是 Wikimedia Commons，CC BY-SA 4.0）：畫面上會自動顯示標示，開場「照片與資料來源」也會列出

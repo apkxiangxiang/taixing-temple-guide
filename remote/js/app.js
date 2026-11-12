@@ -406,8 +406,13 @@
   const VOICE_DIR = "../shared/voice/remote/";
   let VOICE = {};
   fetch(VOICE_DIR + "manifest.json").then((r) => (r.ok ? r.json() : {})).then((j) => (VOICE = j)).catch(() => {});
+  // 虛擬志永哥講話影片（tools/avatar_build.py batch 產生，聲音在影片裡）：同樣用 manifest 對原句
+  const CLIP_DIR = "../shared/clips/remote/";
+  let CLIPS = {};
+  fetch(CLIP_DIR + "manifest.json").then((r) => (r.ok ? r.json() : {})).then((j) => (CLIPS = j)).catch(() => {});
   function media(l, key, raw, vKey = "video", aKey = "audio") {
     if (l && (l[vKey] || l[aKey])) return { video: l[vKey], audio: l[aKey] };
+    if (raw && CLIPS[key] === raw) return { video: CLIP_DIR + key + ".webm" };
     return raw && VOICE[key] === raw ? { audio: VOICE_DIR + key + ".mp3" } : null;
   }
   const voice = new Audio();
